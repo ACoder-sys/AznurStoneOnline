@@ -352,6 +352,9 @@
     }
     .contact-label { font-size: 12px; color: #999; }
     .contact-val { font-size: 14px; font-weight: 600; color: var(--navy); margin-top: 3px; }
+    .contact-item.link-item { cursor: pointer; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .contact-item.link-item:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(201,152,74,0.12); transform: translateY(-2px); }
+    .contact-msg { font-size: 12px; color: var(--gold); margin-top: 4px; font-weight: 600; }
 
     /* ── FOOTER ── */
     .footer {
@@ -428,7 +431,7 @@
     <div class="catalog-card" onclick="openCategory('kafel')">
       <div class="catalog-img">🛁</div>
       <div class="catalog-body">
-        <div class="catalog-name">Kafel &amp; Merlax</div>
+        <div class="catalog-name">Kafel &amp; Metlax</div>
         <div class="catalog-desc">Divar və döşəmə kafelləri</div>
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
@@ -499,20 +502,11 @@
       <div class="filial-info">
         <div class="filial-name">AznurStone Mərdəkan</div>
         <div class="filial-status open">● İşləyir</div>
-        <div class="filial-addr">Bakı, Mərdəkan qəsəbəsi</div>
+        <div class="filial-addr">Bakı, Binə Atçılıq</div>
       </div>
       <a class="map-btn" href="https://www.google.com/maps/place/Aznur+Stone+Kafel-Merlax/@40.4746465,49.9375409,11z/data=!4m10!1m2!2m1!1saznurstone!3m6!1s0x40305fdd45b53c59:0x1230a7ba97384b97!8m2!3d40.4762334!4d50.075517!15sCgphem51cnN0b25lkgEYYnVpbGRpbmdfbWF0ZXJpYWxzX3N0b3Jl4AEA!16s%2Fg%2F11svwxt8g5?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
         📍 Xəritədə gör
       </a>
-    </div>
-    <div class="filial-card">
-      <div class="status-dot closed"></div>
-      <div class="filial-img-box">🏪</div>
-      <div class="filial-info">
-        <div class="filial-name">AznurStone Dərnəgül</div>
-        <div class="filial-status closed">● Bağlıdır</div>
-        <div class="filial-addr">Bakı, Dərnəgül</div>
-      </div>
     </div>
   </div>
 </div>
@@ -531,12 +525,36 @@
     </div>
     <div class="contact-item">
       <div class="contact-icon">📍</div>
-      <div><div class="contact-label">Ünvan</div><div class="contact-val">Bakı, Mərdəkan qəs.</div></div>
+      <div><div class="contact-label">Ünvan</div><div class="contact-val">Bakı, Binə Atçılıq</div></div>
     </div>
     <div class="contact-item">
       <div class="contact-icon">🕐</div>
       <div><div class="contact-label">İş vaxtı</div><div class="contact-val">08:00 – 19:00</div></div>
     </div>
+    <a class="contact-item link-item" href="https://www.facebook.com/share/1Jd38f4Xf6/" target="_blank" rel="noopener">
+      <div class="contact-icon">📘</div>
+      <div>
+        <div class="contact-label">Facebook</div>
+        <div class="contact-val">AznurStone</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
+    <a class="contact-item link-item" href="https://www.instagram.com/aznurstone?igsh=MXA3a3ExdzAzd3JwNA==" target="_blank" rel="noopener">
+      <div class="contact-icon">📷</div>
+      <div>
+        <div class="contact-label">Instagram</div>
+        <div class="contact-val">@aznurstone</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
+    <a class="contact-item link-item" href="https://wa.me/994553047979" target="_blank" rel="noopener">
+      <div class="contact-icon">🟢</div>
+      <div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-val">+994 55 304 79 79</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -607,7 +625,7 @@
 /* ─────────────── DATA ─────────────── */
 const CATEGORIES = {
   kafel: {
-    icon: '🛁', name: 'Kafel & Merlax', sub: 'Divar və döşəmə kafelləri',
+    icon: '🛁', name: 'Kafel & Metlax', sub: 'Divar və döşəmə kafelləri',
     products: [
       { id: 'k1', icon: '🟫', name: 'Klassik Beige Kafel', unit: 'm²', price: 8.50, type: 'area' },
       { id: 'k2', icon: '⬜', name: 'Ağ Metro Kafel', unit: 'm²', price: 6.90, type: 'area' },
