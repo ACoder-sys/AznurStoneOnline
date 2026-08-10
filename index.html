@@ -1119,6 +1119,49 @@ function formatPrice(n) {
 }
 
 /* ─────────────── DİZAYN BAXIŞI ─────────────── */
+function gridInfoForCell(cellId) {
+  if (cellId.indexOf('mcell-') === 0) return { prefix: 'mcell-', cols: 3, rows: 5 };
+  return { prefix: 'dcell-', cols: 4, rows: 4 };
+}
+
+/* Recalculate backgrounds so consecutive cells (same row) holding the same
+   material flow as one continuous image instead of repeating the identical crop. */
+function recalcDesignRow(prefix, cols, rowIndex) {
+  let c = 0;
+  while (c < cols) {
+    const cellId = prefix + (rowIndex * cols + c + 1);
+    const data = designState[cellId];
+    if (!data || !data.img) { c++; continue; }
+    const runIds = [cellId];
+    let cc = c + 1;
+    while (cc < cols) {
+      const nextId = prefix + (rowIndex * cols + cc + 1);
+      const nd = designState[nextId];
+      if (nd && nd.img === data.img) { runIds.push(nextId); cc++; } else break;
+    }
+    const runLen = runIds.length;
+    runIds.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.backgroundImage = `url('${data.img}')`;
+      if (runLen === 1) {
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      } else {
+        el.style.backgroundSize = `${runLen * 100}% 100%`;
+        const posX = (i / (runLen - 1)) * 100;
+        el.style.backgroundPosition = `${posX}% center`;
+      }
+    });
+    c = cc;
+  }
+}
+
+function recalcDesignGrid(cellId) {
+  const { prefix, cols, rows } = gridInfoForCell(cellId);
+  for (let r = 0; r < rows; r++) recalcDesignRow(prefix, cols, r);
+}
+
 function buildDesignGrid(containerId, count, prefix) {
   const grid = document.getElementById(containerId);
   if (!grid || grid.dataset.built) return;
@@ -1146,7 +1189,10 @@ function onDesignCellClick(cellId) {
     const cell = document.getElementById(cellId);
     cell.classList.remove('filled');
     cell.style.backgroundImage = '';
+    cell.style.backgroundSize = '';
+    cell.style.backgroundPosition = '';
     cell.innerHTML = '<span class="design-plus">+</span>';
+    recalcDesignGrid(cellId);
     return;
   }
   pendingDesignCell = cellId;
@@ -1200,8 +1246,8 @@ function applyDesignChoice(product) {
   designState[pendingDesignCell] = { img: product.img, icon: product.icon, name: product.name };
   cell.classList.add('filled');
   if (product.img) {
-    cell.style.backgroundImage = `url('${product.img}')`;
     cell.innerHTML = '';
+    recalcDesignGrid(pendingDesignCell);
   } else {
     cell.style.backgroundImage = '';
     cell.innerHTML = `<span style="font-size:30px">${product.icon}</span>`;
