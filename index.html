@@ -464,8 +464,8 @@
     <div class="catalog-card" onclick="openCategory('das')">
       <div class="catalog-img">🪨</div>
       <div class="catalog-body">
-        <div class="catalog-name">Daş məmulatları</div>
-        <div class="catalog-desc">Doğal daş, mermer, qranit</div>
+        <div class="catalog-name">Dekorativ Daş</div>
+        <div class="catalog-desc">Dekorativ divar daşları</div>
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
     </div>
@@ -669,14 +669,53 @@ const CATEGORIES = {
     ]
   },
   das: {
-    icon: '🪨', name: 'Daş məmulatları', sub: 'Doğal daş, mermer, qranit',
+    icon: '🪨', name: 'Dekorativ Daş', sub: 'Dekorativ divar daşları',
     products: [
-      { id: 'd1', icon: '🪨', name: 'Ağ Mermer', unit: 'm²', price: 45.00, type: 'area' },
-      { id: 'd2', icon: '🟫', name: 'Qara Qranit', unit: 'm²', price: 52.00, type: 'area' },
-      { id: 'd3', icon: '🌿', name: 'Yaşıl Onix', unit: 'm²', price: 68.00, type: 'area' },
-      { id: 'd4', icon: '🟤', name: 'Travertin', unit: 'm²', price: 38.00, type: 'area' },
-      { id: 'd5', icon: '⚪', name: 'Kalsedon Daşı', unit: 'm²', price: 35.00, type: 'area' },
-      { id: 'd6', icon: '🔵', name: 'Lazivarid Daşı', unit: 'm²', price: 72.00, type: 'area' },
+      { id: 'd1',  img: 'das1.jpg',  name: 'Ağ Travertin Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd2',  img: 'das2.jpg',  name: 'Qəhvəyi Klinker Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd3',  img: 'das3.jpg',  name: 'Tünd Mis Effektli Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd4',  img: 'das4.jpg',  name: 'Bej-Qızılı Təbii Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd5',  img: 'das5.jpg',  name: 'Mozaik Mis Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd6',  img: 'das6.jpg',  name: 'Antrasit Qızılı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd7',  img: 'das7.jpg',  name: 'Tünd Mis Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd8',  img: 'das8.jpg',  name: 'Çəhrayı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd9',  img: 'das9.jpg',  name: 'Bej Daş Divar Panel', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd10', img: 'das10.jpg', name: 'Şokolad Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd11', img: 'das11.jpg', name: 'Qırmızı Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd12', img: 'das12.jpg', name: 'Tünd Qəhvəyi Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd13', img: 'das13.jpg', name: 'Bürünc Kub Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd14', img: 'das14.jpg', name: 'Qum Rəngli Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd15', img: 'das15.jpg', name: 'Tünd Antrasit Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd16', img: 'das16.jpg', name: 'Rəngarəng Mozaik Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd17', img: 'das17.jpg', name: 'Boz Kübik Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd18', img: 'das18.jpg', name: 'Qəhvəyi-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd19', img: 'das19.jpg', name: 'Ağ-Boz Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd20', img: 'das20.jpg', name: 'Şokolad Kərpic II', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd21', img: 'das21.jpg', name: 'Terrakota Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd22', img: 'das22.jpg', name: 'Tünd Boz-Qızılı Panel', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd23', img: 'das23.jpg', name: 'Qırmızı-Qəhvəyi Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd24', img: 'das24.jpg', name: 'Rustik Qəhvəyi Daş Blok', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd25', img: 'das25.jpg', name: 'Rəngarəng Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd26', img: 'das26.jpg', name: 'Boz Travertin Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd27', img: 'das27.jpg', name: 'Antrasit Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd28', img: 'das28.jpg', name: 'Bürünc Blok Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd29', img: 'das29.jpg', name: 'Ağ Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd30', img: 'das30.jpg', name: 'Tünd Kərpic Qızılı Damarlı', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd31', img: 'das31.jpg', name: 'Gümüşü Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd32', img: 'das32.jpg', name: 'Ağ-Mavi Rəngli Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd33', img: 'das33.jpg', name: 'Tünd Bürünc Panel Daş II', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd34', img: 'das34.jpg', name: 'Qəhvəyi-Terrakota Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd35', img: 'das35.jpg', name: 'Boz Kərpic Blok', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd36', img: 'das36.jpg', name: 'Yaşıl-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd37', img: 'das37.jpg', name: 'Mozaik Mis Kərpic II', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd38', img: 'das38.jpg', name: 'Ağ Travertin Daş II', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd39', img: 'das39.jpg', name: 'Bej-Qızılı Təbii Daş II', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd40', img: 'das40.jpg', name: 'Qarışıq Boyalı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd41', img: 'das41.jpg', name: 'Ağ-Boz Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd42', img: 'das42.jpg', name: 'Qəhvəyi Klinker Kərpic II', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd43', img: 'das43.jpg', name: 'Bej Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd44', img: 'das44.jpg', name: 'Yaşıl Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd45', img: 'das45.jpg', name: 'Boz Panel Daş II', unit: 'm²', price: 15.00, type: 'area' },
     ]
   },
   tikinti: {
@@ -763,9 +802,12 @@ function openCategory(catKey) {
 
     const card = document.createElement('div');
     card.className = 'product-card';
+    const mediaHtml = p.img
+      ? `<img src="${p.img}" alt="${p.name}">`
+      : `<span>${p.icon}</span>`;
     card.innerHTML = `
       <div class="product-img">
-        <span>${p.icon}</span>
+        ${mediaHtml}
         <div class="product-calc-hint">🧮 Hesabla</div>
       </div>
       <div class="product-body">
@@ -805,7 +847,9 @@ function openCalc(productId, catKey) {
 
   currentCalcProduct = product;
 
-  document.getElementById('modal-icon').textContent = product.icon;
+  document.getElementById('modal-icon').innerHTML = product.img
+    ? `<img src="${product.img}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+    : product.icon;
   document.getElementById('modal-title').textContent = product.name;
   document.getElementById('modal-subtitle').textContent =
     product.type === 'area' ? 'Sahə Hesablayıcısı' : 'Say Hesablayıcısı';
