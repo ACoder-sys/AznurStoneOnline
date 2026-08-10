@@ -353,6 +353,96 @@
     .contact-icon.brand-wa { background: #25D366; }
     .contact-icon.brand-fb svg, .contact-icon.brand-ig svg, .contact-icon.brand-wa svg { width: 22px; height: 22px; }
 
+    /* ── DİZAYN BAXIŞI ── */
+    .dizayn-hint { font-size: 13px; color: var(--muted); margin: -0.8rem 0 1.5rem; }
+
+    .design-grid {
+      display: grid; gap: 10px; max-width: 640px;
+    }
+    .design-grid-desktop { display: none; grid-template-columns: repeat(4, 1fr); }
+    .design-grid-mobile { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+    .design-cell {
+      aspect-ratio: 1 / 1; border-radius: 12px;
+      border: 2px dashed var(--border); background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      background-size: cover; background-position: center;
+    }
+    .design-cell:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,152,74,0.15); }
+    .design-cell .design-plus { font-size: 28px; font-weight: 300; color: #ccc; line-height: 1; pointer-events: none; }
+    .design-cell:hover .design-plus { color: var(--gold); }
+    .design-cell.filled { border-style: solid; border-color: var(--border); }
+    .design-cell.filled .design-plus { display: none; }
+    .design-cell.filled::after {
+      content: '✕'; position: absolute; top: 6px; right: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(26,26,46,0.72); color: white;
+      font-size: 12px; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .design-cell.filled:hover::after { opacity: 1; }
+
+    @media (min-width: 769px) {
+      .design-grid-mobile { display: none; }
+      .design-grid-desktop { display: grid; }
+    }
+
+    /* Design picker modal */
+    .design-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,30,0.55); z-index: 300;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .design-overlay.open { display: flex; }
+    .design-modal {
+      background: white; border-radius: 20px; width: 560px; max-width: 94vw;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(.34,1.4,.64,1);
+    }
+    .design-modal-header {
+      background: var(--navy); color: white; padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; gap: 10px;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .design-back-btn {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 15px;
+      cursor: pointer; display: none; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .design-back-btn.show { display: flex; }
+    .design-modal-title { font-size: 15px; font-weight: 700; flex: 1; }
+    .design-close {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .design-close:hover, .design-back-btn:hover { background: rgba(255,255,255,0.2); }
+    .design-modal-body { padding: 1.2rem; }
+
+    .design-cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .design-cat-card {
+      border: 1.5px solid var(--border); border-radius: 12px; padding: 1.1rem 0.8rem;
+      text-align: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    }
+    .design-cat-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .design-cat-icon { font-size: 30px; margin-bottom: 8px; }
+    .design-cat-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+    .design-prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .design-prod-item {
+      aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden; cursor: pointer;
+      border: 1.5px solid var(--border); background: #f5f2ec;
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .design-prod-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .design-prod-item img { width: 100%; height: 100%; object-fit: cover; }
+
     /* ── FOOTER ── */
     .footer {
       background: var(--navy); color: #888; text-align: center;
@@ -398,6 +488,12 @@
 
       .calc-inputs-row { grid-template-columns: 1fr 1fr; }
       .calc-modal { border-radius: 16px; }
+
+      .design-grid { max-width: 100%; gap: 8px; }
+      .design-cell .design-plus { font-size: 22px; }
+      .design-modal { border-radius: 16px; }
+      .design-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .design-prod-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     }
     @media (max-width: 480px) {
       .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
@@ -419,6 +515,7 @@
   <ul class="nav-links">
     <li class="active" onclick="showPage('haqqimizda', this)"><a href="#">Haqqımızda</a></li>
     <li onclick="showPage('kataloq', this)"><a href="#">Kataloq</a></li>
+    <li onclick="showPage('dizayn', this)"><a href="#">Dizayn Baxışı</a></li>
     <li onclick="showPage('filiallar', this)"><a href="#">Filiallar</a></li>
     <li onclick="showPage('elaqe', this)"><a href="#">Əlaqə</a></li>
   </ul>
@@ -518,6 +615,14 @@
 </div>
 
 <!-- FİLİALLAR -->
+<!-- DİZAYN BAXIŞI -->
+<div id="dizayn" class="page-content">
+  <div class="section-title">Dizayn Baxışı</div>
+  <p class="dizayn-hint">Kvadrata basıb material seçin — divarınızın necə görünəcəyini əvvəlcədən izləyin.</p>
+  <div class="design-grid design-grid-mobile" id="design-grid-mobile"></div>
+  <div class="design-grid design-grid-desktop" id="design-grid-desktop"></div>
+</div>
+
 <div id="filiallar" class="page-content">
   <div class="section-title">Filiallar</div>
   <div class="filial-list">
@@ -648,6 +753,21 @@
   </div>
 </div>
 
+<!-- DESIGN PICKER MODAL -->
+<div class="design-overlay" id="designOverlay" onclick="handleDesignOverlayClick(event)">
+  <div class="design-modal">
+    <div class="design-modal-header">
+      <button class="design-back-btn" id="design-back-btn" onclick="designBack()">←</button>
+      <div class="design-modal-title" id="design-modal-title">Material seçin</div>
+      <button class="design-close" onclick="closeDesignPicker()">✕</button>
+    </div>
+    <div class="design-modal-body">
+      <div class="design-cat-grid" id="design-categories"></div>
+      <div class="design-prod-grid" id="design-products" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
   © 2024 <span>AznurStone</span> — Eviniz Üçün Ən Gözəli
 </footer>
@@ -767,6 +887,10 @@ const CATEGORIES = {
 /* ─────────────── STATE ─────────────── */
 let currentCalcProduct = null;
 let currentNavLi = null;
+const DESIGN_CATS = ['kafel', 'das', 'fasad', 'taxta'];
+let designState = {};      // cellId -> { img, icon, name }
+let pendingDesignCell = null;
+let pendingDesignCat = null;
 
 /* ─────────────── NAV ─────────────── */
 function showPage(id, li) {
@@ -947,8 +1071,115 @@ function formatPrice(n) {
   return n.toLocaleString('az-AZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+/* ─────────────── DİZAYN BAXIŞI ─────────────── */
+function buildDesignGrid(containerId, count, prefix) {
+  const grid = document.getElementById(containerId);
+  if (!grid || grid.dataset.built) return;
+  grid.dataset.built = '1';
+  for (let i = 1; i <= count; i++) {
+    const cellId = prefix + i;
+    const cell = document.createElement('div');
+    cell.className = 'design-cell';
+    cell.id = cellId;
+    cell.innerHTML = '<span class="design-plus">+</span>';
+    cell.addEventListener('click', () => onDesignCellClick(cellId));
+    grid.appendChild(cell);
+  }
+}
+
+function initDesignGrids() {
+  buildDesignGrid('design-grid-mobile', 15, 'mcell-');
+  buildDesignGrid('design-grid-desktop', 16, 'dcell-');
+}
+
+function onDesignCellClick(cellId) {
+  if (designState[cellId]) {
+    // already filled -> clear it
+    delete designState[cellId];
+    const cell = document.getElementById(cellId);
+    cell.classList.remove('filled');
+    cell.style.backgroundImage = '';
+    cell.innerHTML = '<span class="design-plus">+</span>';
+    return;
+  }
+  pendingDesignCell = cellId;
+  openDesignPicker();
+}
+
+function openDesignPicker() {
+  pendingDesignCat = null;
+  document.getElementById('design-back-btn').classList.remove('show');
+  document.getElementById('design-modal-title').textContent = 'Material seçin';
+  document.getElementById('design-products').style.display = 'none';
+  const catGrid = document.getElementById('design-categories');
+  catGrid.style.display = 'grid';
+  catGrid.innerHTML = '';
+  DESIGN_CATS.forEach(key => {
+    const cat = CATEGORIES[key];
+    const card = document.createElement('div');
+    card.className = 'design-cat-card';
+    card.innerHTML = `
+      <div class="design-cat-icon">${cat.icon}</div>
+      <div class="design-cat-name">${cat.name}</div>
+    `;
+    card.addEventListener('click', () => openDesignProducts(key));
+    catGrid.appendChild(card);
+  });
+  document.getElementById('designOverlay').classList.add('open');
+}
+
+function openDesignProducts(catKey) {
+  pendingDesignCat = catKey;
+  const cat = CATEGORIES[catKey];
+  document.getElementById('design-modal-title').textContent = cat.name;
+  document.getElementById('design-back-btn').classList.add('show');
+  document.getElementById('design-categories').style.display = 'none';
+  const prodGrid = document.getElementById('design-products');
+  prodGrid.style.display = 'grid';
+  prodGrid.innerHTML = '';
+  cat.products.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'design-prod-item';
+    item.innerHTML = p.img ? `<img src="${p.img}" alt="${p.name}">` : `<span>${p.icon}</span>`;
+    item.title = p.name;
+    item.addEventListener('click', () => applyDesignChoice(p));
+    prodGrid.appendChild(item);
+  });
+}
+
+function applyDesignChoice(product) {
+  if (!pendingDesignCell) return;
+  const cell = document.getElementById(pendingDesignCell);
+  designState[pendingDesignCell] = { img: product.img, icon: product.icon, name: product.name };
+  cell.classList.add('filled');
+  if (product.img) {
+    cell.style.backgroundImage = `url('${product.img}')`;
+    cell.innerHTML = '';
+  } else {
+    cell.style.backgroundImage = '';
+    cell.innerHTML = `<span style="font-size:30px">${product.icon}</span>`;
+  }
+  closeDesignPicker();
+}
+
+function designBack() {
+  openDesignPicker();
+}
+
+function closeDesignPicker() {
+  document.getElementById('designOverlay').classList.remove('open');
+  pendingDesignCell = null;
+  pendingDesignCat = null;
+}
+
+function handleDesignOverlayClick(e) {
+  if (e.target === document.getElementById('designOverlay')) closeDesignPicker();
+}
+
+initDesignGrids();
+
 /* keyboard close */
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalc(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeDesignPicker(); } });
 </script>
 
 </body>
