@@ -357,30 +357,32 @@
     .dizayn-hint { font-size: 13px; color: var(--muted); margin: -0.8rem 0 1.5rem; }
 
     .design-grid {
-      display: grid; gap: 10px; max-width: 640px;
+      display: grid; gap: 0; max-width: 640px;
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
     }
     .design-grid-desktop { display: none; grid-template-columns: repeat(4, 1fr); }
     .design-grid-mobile { display: grid; grid-template-columns: repeat(3, 1fr); }
 
     .design-cell {
-      aspect-ratio: 1 / 1; border-radius: 12px;
-      border: 2px dashed var(--border); background: white;
+      aspect-ratio: 1 / 1; border-radius: 0;
+      border: 1px solid var(--border); margin: -0.5px; background: white;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; position: relative; overflow: hidden;
-      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer; position: relative; overflow: hidden; z-index: 0;
+      transition: border-color 0.2s, box-shadow 0.2s;
       background-size: cover; background-position: center;
     }
-    .design-cell:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,152,74,0.15); }
+    .design-cell:hover { border-color: var(--gold); box-shadow: inset 0 0 0 1.5px var(--gold); z-index: 1; }
     .design-cell .design-plus { font-size: 28px; font-weight: 300; color: #ccc; line-height: 1; pointer-events: none; }
     .design-cell:hover .design-plus { color: var(--gold); }
-    .design-cell.filled { border-style: solid; border-color: var(--border); }
+    .design-cell.filled { border-color: transparent; }
+    .design-cell.filled:hover { box-shadow: none; }
     .design-cell.filled .design-plus { display: none; }
     .design-cell.filled::after {
       content: '✕'; position: absolute; top: 6px; right: 6px;
       width: 22px; height: 22px; border-radius: 50%;
       background: rgba(26,26,46,0.72); color: white;
       font-size: 12px; display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity 0.2s;
+      opacity: 0; transition: opacity 0.2s; z-index: 2;
     }
     .design-cell.filled:hover::after { opacity: 1; }
 
@@ -489,7 +491,7 @@
       .calc-inputs-row { grid-template-columns: 1fr 1fr; }
       .calc-modal { border-radius: 16px; }
 
-      .design-grid { max-width: 100%; gap: 8px; }
+      .design-grid { max-width: 100%; }
       .design-cell .design-plus { font-size: 22px; }
       .design-modal { border-radius: 16px; }
       .design-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -542,6 +544,47 @@
         <tr><td>Həftə içi</td><td>08:00 — 19:00</td></tr>
         <tr><td>Həftə sonu</td><td>08:00 — 18:30</td></tr>
       </table>
+    </div>
+  </div>
+
+  <div class="about-grid" style="margin-top:1.25rem">
+    <div style="display:flex; flex-direction:column; gap:1rem">
+      <a class="contact-item link-item" href="https://www.facebook.com/share/1Jd38f4Xf6/" target="_blank" rel="noopener">
+        <div class="contact-icon brand-fb">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.196 2.238.196v2.475h-1.26c-1.243 0-1.63.775-1.63 1.57v1.89h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Facebook</div>
+          <div class="contact-val">AznurStone</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
+      <a class="contact-item link-item" href="https://www.instagram.com/aznurstone?igsh=MXA3a3ExdzAzd3JwNA==" target="_blank" rel="noopener">
+        <div class="contact-icon brand-ig">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.256 1.216.6 1.772 1.153.51.5.905 1.104 1.153 1.772.247.637.415 1.363.465 2.428.048 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.048-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428A4.88 4.88 0 0 1 3.678 3.68 4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.012 9.283 2 12 2Zm0 1.802c-2.67 0-2.987.01-4.04.059-.976.045-1.505.207-1.858.344-.466.181-.8.398-1.15.748-.35.35-.566.684-.747 1.15-.137.353-.3.882-.344 1.857-.05 1.054-.06 1.37-.06 4.04 0 2.67.01 2.987.06 4.04.045.976.207 1.505.344 1.858.181.466.397.8.747 1.15.35.35.684.566 1.15.747.353.137.882.3 1.857.344 1.053.05 1.37.06 4.041.06 2.67 0 2.987-.01 4.04-.06.976-.045 1.506-.207 1.858-.344.466-.181.8-.397 1.15-.747.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.054.06-1.37.06-4.041 0-2.67-.012-2.987-.06-4.04-.045-.976-.207-1.505-.344-1.858a3.095 3.095 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.747c-.352-.137-.882-.3-1.857-.344-1.054-.05-1.37-.06-4.041-.06Zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27Zm0 8.468a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666Zm6.538-8.671a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-val">@aznurstone</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:1rem">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><div class="contact-label">Telefon</div><div class="contact-val">+994 55 304 79 79</div></div>
+      </div>
+      <a class="contact-item link-item" href="https://wa.me/994553047979" target="_blank" rel="noopener">
+        <div class="contact-icon brand-wa">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.14-1.35a9.96 9.96 0 0 0 4.9 1.25h.01c5.52 0 10-4.48 10-10s-4.48-10-10.01-10Zm5.86 14.3c-.25.7-1.24 1.28-2.02 1.44-.54.11-1.24.2-3.6-.77-3.02-1.25-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.86 2.08.93 2.23.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.26 1.64 2.04 1.13 1 2.08 1.32 2.38 1.47.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.57.35.08.13.08.72-.17 1.42Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val">+994 55 304 79 79</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
