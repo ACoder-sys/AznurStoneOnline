@@ -645,6 +645,14 @@
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
     </div>
+    <div class="catalog-card" onclick="openCategory('toz')">
+      <div class="catalog-img">🧴</div>
+      <div class="catalog-body">
+        <div class="catalog-name">Toz Məhsulları</div>
+        <div class="catalog-desc">Yapışdırıcı, sement, dərz materialları</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -788,6 +796,14 @@
         </div>
       </div>
 
+      <!-- Color select (only for products with color options) -->
+      <div id="color-inputs" style="display:none; margin-top:1rem;">
+        <div class="calc-input-wrap">
+          <label>Rəng</label>
+          <select class="calc-input" id="inp-color" onchange="computeResult()"></select>
+        </div>
+      </div>
+
       <!-- Result -->
       <div class="calc-result-box" style="margin-top:1.4rem;">
         <div class="calc-result-rows" id="result-rows"></div>
@@ -857,7 +873,6 @@ const CATEGORIES = {
       { id: 'd17', img: 'das17.jpg', name: 'Boz Kübik Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd18', img: 'das18.jpg', name: 'Qəhvəyi-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd19', img: 'das19.jpg', name: 'Ağ-Boz Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'd20', img: 'das20.jpg', name: 'Şokolad Kərpic II', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd21', img: 'das21.jpg', name: 'Terrakota Kərpic', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd22', img: 'das22.jpg', name: 'Tünd Boz-Qızılı Panel', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd23', img: 'das23.jpg', name: 'Qırmızı-Qəhvəyi Kərpic', unit: 'm²', price: 15.00, type: 'area' },
@@ -870,19 +885,13 @@ const CATEGORIES = {
       { id: 'd30', img: 'das30.jpg', name: 'Tünd Kərpic Qızılı Damarlı', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd31', img: 'das31.jpg', name: 'Gümüşü Kərpic', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd32', img: 'das32.jpg', name: 'Ağ-Mavi Rəngli Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
-      { id: 'd33', img: 'das33.jpg', name: 'Tünd Bürünc Panel Daş II', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd34', img: 'das34.jpg', name: 'Qəhvəyi-Terrakota Kərpic', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd35', img: 'das35.jpg', name: 'Boz Kərpic Blok', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd36', img: 'das36.jpg', name: 'Yaşıl-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
-      { id: 'd37', img: 'das37.jpg', name: 'Mozaik Mis Kərpic II', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'd38', img: 'das38.jpg', name: 'Ağ Travertin Daş II', unit: 'm²', price: 14.00, type: 'area' },
-      { id: 'd39', img: 'das39.jpg', name: 'Bej-Qızılı Təbii Daş II', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd40', img: 'das40.jpg', name: 'Qarışıq Boyalı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd41', img: 'das41.jpg', name: 'Ağ-Boz Kərpic', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'd42', img: 'das42.jpg', name: 'Qəhvəyi Klinker Kərpic II', unit: 'm²', price: 14.00, type: 'area' },
       { id: 'd43', img: 'das43.jpg', name: 'Bej Kərpic', unit: 'm²', price: 15.00, type: 'area' },
       { id: 'd44', img: 'das44.jpg', name: 'Yaşıl Kərpic', unit: 'm²', price: 14.00, type: 'area' },
-      { id: 'd45', img: 'das45.jpg', name: 'Boz Panel Daş II', unit: 'm²', price: 15.00, type: 'area' },
     ]
   },
   tikinti: {
@@ -927,6 +936,15 @@ const CATEGORIES = {
       { id: 'q5', icon: '🟡', name: 'Primer (5 l)', unit: 'kənar', price: 14.00, type: 'count' },
       { id: 'q6', icon: '🧴', name: 'Dərz Doldurucu (2 kq)', unit: 'paket', price: 5.20, type: 'count' },
       { id: 'q7', icon: '⚪', name: 'Alçipan Yapışdırıcısı (25 kq)', unit: 'torba', price: 7.80, type: 'count' },
+    ]
+  },
+  toz: {
+    icon: '🧴', name: 'Toz Məhsulları', sub: 'Yapışdırıcı, sement, dərz materialları',
+    products: [
+      { id: 'tz1', img: 'toz1.jpg', name: 'Tector Ceram 301 (25 kq)', unit: 'torba', price: 7.50, type: 'count' },
+      { id: 'tz2', img: 'toz2.jpg', name: 'Norm A400 (40 kq)', unit: 'torba', price: 8.00, type: 'count' },
+      { id: 'tz3', img: 'toz3.jpg', name: 'Fab Fuqaderz Silikonlu (1 kq)', unit: 'kq', price: 2.00, type: 'count',
+        colors: ['Ağ', 'Qara', 'Boz', 'Açıq Boz', 'Ağlay', 'Fildişi', 'Qəhvəyi', 'Açıq Qəhvəyi'] },
     ]
   }
 };
@@ -1030,6 +1048,18 @@ function openCalc(productId, catKey) {
   document.getElementById('area-inputs').style.display = product.type === 'area' ? 'block' : 'none';
   document.getElementById('count-inputs').style.display = product.type === 'count' ? 'block' : 'none';
 
+  // color selector (only for products that define color options)
+  const colorWrap = document.getElementById('color-inputs');
+  const colorSelect = document.getElementById('inp-color');
+  if (product.colors && product.colors.length) {
+    colorWrap.style.display = 'block';
+    colorSelect.innerHTML = product.colors.map(c => `<option value="${c}">${c}</option>`).join('');
+    colorSelect.value = product.colors[0]; // Ağ default
+  } else {
+    colorWrap.style.display = 'none';
+    colorSelect.innerHTML = '';
+  }
+
   // clear inputs
   document.getElementById('inp-length').value = '';
   document.getElementById('inp-width').value = '';
@@ -1091,11 +1121,19 @@ function computeResult() {
 
     const total = count * p.price;
 
+    const colorRow = (p.colors && p.colors.length)
+      ? `<div class="calc-result-item">
+           <span class="calc-result-item-label">Rəng</span>
+           <span class="calc-result-item-val">${document.getElementById('inp-color').value}</span>
+         </div>`
+      : '';
+
     rows.innerHTML = `
       <div class="calc-result-item">
         <span class="calc-result-item-label">Say</span>
         <span class="calc-result-item-val">${count} ${p.unit}</span>
       </div>
+      ${colorRow}
       <div class="calc-result-item">
         <span class="calc-result-item-label">Vahid qiymət</span>
         <span class="calc-result-item-val">₼${formatPrice(p.price)} / ${p.unit}</span>
