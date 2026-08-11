@@ -1162,42 +1162,31 @@ function gridInfoForCell(cellId) {
   return { prefix: 'dcell-', cols: 4, rows: 4 };
 }
 
-/* Recalculate backgrounds so consecutive cells (same row) holding the same
-   material flow as one continuous image instead of repeating the identical crop. */
+/* Apply each cell's material as a natural, undistorted crop (no stretching).
+   Adjacent cells with the same material simply sit border-to-border —
+   real brick/stone walls are repeating patterns by nature, so this reads
+   as one continuous surface without warping the photo. */
 function recalcDesignRow(prefix, cols, rowIndex) {
-  let c = 0;
-  while (c < cols) {
+  for (let c = 0; c < cols; c++) {
     const cellId = prefix + (rowIndex * cols + c + 1);
     const data = designState[cellId];
-    if (!data || !data.img) { c++; continue; }
-    const runIds = [cellId];
-    let cc = c + 1;
-    while (cc < cols) {
-      const nextId = prefix + (rowIndex * cols + cc + 1);
-      const nd = designState[nextId];
-      if (nd && nd.img === data.img) { runIds.push(nextId); cc++; } else break;
-    }
-    const runLen = runIds.length;
-    runIds.forEach((id, i) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.style.backgroundImage = `url('${data.img}')`;
-      if (runLen === 1) {
-        el.style.backgroundSize = 'cover';
-        el.style.backgroundPosition = 'center';
-      } else {
-        el.style.backgroundSize = `${runLen * 100}% 100%`;
-        const posX = (i / (runLen - 1)) * 100;
-        el.style.backgroundPosition = `${posX}% center`;
-      }
-    });
-    c = cc;
+    const el = document.getElementById(cellId);
+    if (!el || !data || !data.img) continue;
+    el.style.backgroundImage = `url('${data.img}')`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundPosition = 'center';
   }
 }
 
 function recalcDesignGrid(cellId) {
   const { prefix, cols, rows } = gridInfoForCell(cellId);
   for (let r = 0; r < rows; r++) recalcDesignRow(prefix, cols, r);
+}
+
+function recalcAllDesignGrids() {
+  recalcDesignGrid('mcell-1');
+  recalcDesignGrid('dcell-1');
 }
 
 function buildDesignGrid(containerId, count, prefix) {
@@ -1308,6 +1297,11 @@ function handleDesignOverlayClick(e) {
 }
 
 initDesignGrids();
+let designResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(designResizeTimer);
+  designResizeTimer = setTimeout(recalcAllDesignGrids, 150);
+});
 
 /* keyboard close */
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeDesignPicker(); } });
