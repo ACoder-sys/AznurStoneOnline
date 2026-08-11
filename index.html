@@ -454,29 +454,36 @@
 
     /* ── RESPONSIVE ── */
     /* Same layout everywhere — just scale down, don't restack into different grids */
+    body { overflow-x: hidden; }
+
+    /* Fluid scaling: these apply at all sizes so the site scales smoothly
+       for every phone instead of jumping only at fixed breakpoints. */
+    .logo-text { font-size: clamp(13px, 3.6vw, 18px); }
+    .logo-sub { font-size: clamp(8px, 2vw, 10px); }
+    .section-title { font-size: clamp(15px, 3.6vw, 18px); }
+    .nav-links li a { font-size: clamp(10.5px, 2.8vw, 13.5px); }
+    .catalog-name { font-size: clamp(10.5px, 2.9vw, 14px); }
+    .catalog-desc { font-size: clamp(9px, 2.4vw, 12px); }
+    .product-name { font-size: clamp(10.5px, 2.6vw, 13.5px); }
+    .product-price { font-size: clamp(13px, 3.2vw, 17px); }
+    .product-unit { font-size: clamp(9px, 2.2vw, 11px); }
+
     @media (max-width: 768px) {
       .navbar { padding: 0 1rem; gap: 1rem; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .navbar::-webkit-scrollbar { display: none; }
-      .logo-text { font-size: 15px; }
-      .logo-sub { font-size: 9px; }
-      .nav-links li a { padding: 16px 12px; font-size: 12px; white-space: nowrap; }
+      .nav-links li a { padding: 16px 12px; white-space: nowrap; }
 
       .page-content { padding: 1.5rem 1rem; }
       #products-page { padding: 1.5rem 1rem; }
 
       .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
       .catalog-img { height: 80px; font-size: 30px; }
-      .catalog-name { font-size: 11.5px; }
-      .catalog-desc { font-size: 10px; }
       .catalog-arrow { font-size: 10px; }
       .catalog-body { padding: 0.6rem; }
 
       .products-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
       .product-img { font-size: 34px; }
       .product-body { padding: 0.6rem 0.6rem 0.7rem; gap: 3px; }
-      .product-name { font-size: 11px; }
-      .product-unit { font-size: 9.5px; }
-      .product-price { font-size: 13px; }
       .product-calc-btn { margin: 0 0.6rem 0.6rem; font-size: 11px; padding: 7px 0; }
 
       .about-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -502,6 +509,26 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
       .about-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    /* Very small phones (SE, small Android) */
+    @media (max-width: 360px) {
+      .navbar { padding: 0 0.6rem; gap: 0.6rem; }
+      .logo-area { gap: 6px; }
+      .page-content, #products-page { padding: 1.1rem 0.7rem; }
+      .catalog-grid { gap: 0.35rem; }
+      .catalog-img { height: 64px; font-size: 24px; }
+      .catalog-body { padding: 0.45rem; }
+      .catalog-arrow { display: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+      .product-img { font-size: 28px; }
+      .product-body { padding: 0.5rem 0.5rem 0.6rem; }
+      .about-card, .contact-item, .filial-card { padding: 0.8rem; }
+      .contact-icon { width: 34px; height: 34px; font-size: 17px; }
+      .section-title { margin-bottom: 1rem; }
+      .calc-modal-header, .design-modal-header { padding: 1rem 1.1rem; }
+      .calc-modal-body, .design-modal-body { padding: 1rem; }
+      .design-cat-icon { font-size: 24px; }
+      .design-cat-card { padding: 0.8rem 0.5rem; }
     }
   </style>
 </head>
@@ -638,10 +665,10 @@
       </div>
     </div>
     <div class="catalog-card" onclick="openCategory('qurashdir')">
-      <div class="catalog-img">🔩</div>
+      <div class="catalog-img"><img src="sil-cover.jpg" alt="Silikon, Köpük və Pas Açıcılar"></div>
       <div class="catalog-body">
-        <div class="catalog-name">Quraşdırma</div>
-        <div class="catalog-desc">Yapışdırıcı, sıva, kit</div>
+        <div class="catalog-name">Silikon, Köpük və Pas Açıcılar</div>
+        <div class="catalog-desc">Silikon, köpük, pas açıcı</div>
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
     </div>
@@ -927,15 +954,19 @@ const CATEGORIES = {
     ]
   },
   qurashdir: {
-    icon: '🔩', name: 'Quraşdırma', sub: 'Yapışdırıcı, sıva, kit',
+    icon: '🔩', name: 'Silikon, Köpük və Pas Açıcılar', sub: 'Silikon, köpük, pas açıcı',
     products: [
-      { id: 'q1', icon: '🧴', name: 'Kafel Yapışdırıcısı (25 kq)', unit: 'torba', price: 8.20, type: 'count' },
-      { id: 'q2', icon: '🪣', name: 'Fasad Sıvası (25 kq)', unit: 'torba', price: 9.50, type: 'count' },
-      { id: 'q3', icon: '🔘', name: 'Akril Kit (300 ml)', unit: 'boru', price: 3.80, type: 'count' },
-      { id: 'q4', icon: '🧱', name: 'Silikon (280 ml)', unit: 'boru', price: 4.50, type: 'count' },
-      { id: 'q5', icon: '🟡', name: 'Primer (5 l)', unit: 'kənar', price: 14.00, type: 'count' },
-      { id: 'q6', icon: '🧴', name: 'Dərz Doldurucu (2 kq)', unit: 'paket', price: 5.20, type: 'count' },
-      { id: 'q7', icon: '⚪', name: 'Alçipan Yapışdırıcısı (25 kq)', unit: 'torba', price: 7.80, type: 'count' },
+      { id: 's1',  img: 'sil1.jpg',  name: 'Stern Poliuretan Montaj Köpüyü (750 ml)', unit: 'ədəd', price: 9.50, type: 'count' },
+      { id: 's2',  img: 'sil2.jpg',  name: 'Fab Püskürtməli Poliuretan Köpük (500 ml)', unit: 'ədəd', price: 6.50, type: 'count' },
+      { id: 's3',  img: 'sil3.jpg',  name: 'Fab Püskürtməli Poliuretan Köpük (750 ml)', unit: 'ədəd', price: 9.50, type: 'count' },
+      { id: 's4',  img: 'sil4.jpg',  name: 'Fab Universal Ağ Silikon', unit: 'ədəd', price: 5.00, type: 'count' },
+      { id: 's5',  img: 'sil5.jpg',  name: 'Esa Şəffaf Silikon', unit: 'ədəd', price: 3.50, type: 'count' },
+      { id: 's6',  img: 'sil6.jpg',  name: 'Fab Akvarium Silikon', unit: 'ədəd', price: 7.50, type: 'count' },
+      { id: 's7',  img: 'sil7.jpg',  name: 'Fab Güzgü Silikon', unit: 'ədəd', price: 8.50, type: 'count' },
+      { id: 's8',  img: 'sil8.jpg',  name: 'Fab Şəffaf Silikon', unit: 'ədəd', price: 6.00, type: 'count' },
+      { id: 's9',  img: 'sil9.jpg',  name: 'WD-40 Pas Açan', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 's10', img: 'sil10.jpg', name: 'Apel Sarı', unit: 'ədəd', price: 4.50, type: 'count' },
+      { id: 's11', img: 'sil11.jpg', name: 'Apel Şəffaf', unit: 'ədəd', price: 5.00, type: 'count' },
     ]
   },
   toz: {
