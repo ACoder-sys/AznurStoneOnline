@@ -1757,11 +1757,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(
 -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  window.EMAILJS_CONFIGURED = false; // <- true edin, açarları doldurandan sonra
-  window.EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-  window.EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-  window.EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-  if (window.EMAILJS_CONFIGURED && typeof emailjs !== 'undefined') {
+  window.EMAILJS_CONFIGURED = true;
+  window.EMAILJS_SERVICE_ID = 'service_8lutj0b';
+  window.EMAILJS_TEMPLATE_ID = 'template_bog7stq';
+  window.EMAILJS_PUBLIC_KEY = '4FjYnylAfa_V1dhKv';
+
+  if (typeof emailjs !== 'undefined') {
     emailjs.init(window.EMAILJS_PUBLIC_KEY);
   }
 </script>
