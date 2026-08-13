@@ -445,6 +445,127 @@
     .design-prod-item:hover { border-color: var(--gold); transform: translateY(-2px); }
     .design-prod-item img { width: 100%; height: 100%; object-fit: cover; }
 
+    /* ── CART BUTTON ── */
+    .cart-btn {
+      margin-left: auto; background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 10px 8px; flex-shrink: 0;
+    }
+    .cart-btn-icon { position: relative; font-size: 19px; line-height: 1; }
+    .cart-badge {
+      position: absolute; top: -8px; right: -10px;
+      background: var(--gold); color: white; font-size: 10px; font-weight: 700;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--navy);
+    }
+    .cart-btn-label { font-size: 10.5px; color: #ccc; font-weight: 500; }
+    .cart-btn:hover .cart-btn-label { color: white; }
+
+    /* ── CART MODAL ── */
+    .cart-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,30,0.55); z-index: 400;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .cart-overlay.open { display: flex; }
+    .cart-modal {
+      background: white; border-radius: 20px; width: 760px; max-width: 95vw;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(.34,1.4,.64,1);
+    }
+    .cart-modal-header {
+      background: var(--navy); color: white; padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; gap: 10px;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .cart-modal-title { font-size: 16px; font-weight: 700; flex: 1; }
+    .cart-close, .cart-back-btn {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cart-back-btn { display: none; }
+    .cart-back-btn.show { display: flex; }
+    .cart-close:hover, .cart-back-btn:hover { background: rgba(255,255,255,0.2); }
+    .cart-modal-body { padding: 1.4rem; }
+
+    .cart-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; align-items: start; }
+    .cart-items-list { display: flex; flex-direction: column; gap: 10px; }
+    .cart-item-row {
+      display: flex; align-items: center; gap: 12px;
+      border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px;
+    }
+    .cart-item-img {
+      width: 48px; height: 48px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
+      background: #f5f2ec; display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .cart-item-meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+    .cart-item-sub { font-size: 13px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .cart-item-remove {
+      background: #fdecea; color: #d9534f; border: none; border-radius: 7px;
+      width: 26px; height: 26px; font-size: 13px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cart-item-remove:hover { background: #f8d3d0; }
+    .cart-empty { text-align: center; color: var(--muted); font-size: 13.5px; padding: 2.5rem 0; }
+
+    .cart-summary {
+      background: linear-gradient(135deg, #1a1a2e, #0e1628);
+      border-radius: 14px; padding: 1.3rem; position: sticky; top: 0;
+    }
+    .cart-summary-label { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+    .cart-summary-total {
+      font-size: 26px; font-weight: 700; color: var(--gold-light);
+      font-family: 'DM Serif Display', serif; margin-bottom: 1.1rem;
+    }
+    .cart-checkout-btn {
+      width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border: none; border-radius: 10px; padding: 12px 0; color: white;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .cart-checkout-btn:hover { opacity: 0.9; }
+    .cart-checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .checkout-field { margin-bottom: 1rem; }
+    .checkout-field label {
+      display: block; font-size: 12px; color: var(--muted); font-weight: 500;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .checkout-field input, .checkout-field textarea {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; font-size: 14px; color: var(--navy);
+      outline: none; font-family: 'DM Sans', sans-serif; resize: vertical;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .checkout-field input:focus, .checkout-field textarea:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,152,74,0.12);
+    }
+    .checkout-summary-line {
+      display: flex; justify-content: space-between; font-size: 13.5px;
+      color: var(--navy); padding: 10px 0; border-top: 1px solid var(--border);
+      margin-bottom: 1.1rem; font-weight: 600;
+    }
+
+    .thankyou-box { text-align: center; padding: 1rem 0.5rem 0.5rem; }
+    .thankyou-icon {
+      width: 62px; height: 62px; border-radius: 50%; margin: 0 auto 1.1rem;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      display: flex; align-items: center; justify-content: center; font-size: 30px; color: white;
+    }
+    .thankyou-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .thankyou-text { font-size: 13.5px; color: #555; line-height: 1.6; margin-bottom: 1.4rem; }
+    .thankyou-close-btn {
+      background: var(--navy); color: white; border: none; border-radius: 10px;
+      padding: 11px 24px; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    }
+
     /* ── FOOTER ── */
     .footer {
       background: var(--navy); color: #888; text-align: center;
@@ -469,8 +590,9 @@
     .product-unit { font-size: clamp(9px, 2.2vw, 11px); }
 
     @media (max-width: 768px) {
-      .navbar { padding: 0 1rem; gap: 1rem; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .navbar::-webkit-scrollbar { display: none; }
+      .navbar { padding: 0 1rem; gap: 0.5rem; flex-wrap: nowrap; }
+      .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-shrink: 1; min-width: 0; }
+      .nav-links::-webkit-scrollbar { display: none; }
       .nav-links li a { padding: 16px 12px; white-space: nowrap; }
 
       .page-content { padding: 1.5rem 1rem; }
@@ -503,6 +625,12 @@
       .design-modal { border-radius: 16px; }
       .design-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .design-prod-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+      .cart-btn-label { display: none; }
+      .cart-btn { padding: 8px 6px; }
+      .cart-layout { grid-template-columns: 1fr; }
+      .cart-summary { position: static; }
+      .cart-modal { border-radius: 16px; }
     }
     @media (max-width: 480px) {
       .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
@@ -548,6 +676,13 @@
     <li onclick="showPage('filiallar', this)"><a href="#">Filiallar</a></li>
     <li onclick="showPage('elaqe', this)"><a href="#">Əlaqə</a></li>
   </ul>
+  <button class="cart-btn" id="cart-btn" onclick="openCart()">
+    <span class="cart-btn-icon">
+      🛒
+      <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+    </span>
+    <span class="cart-btn-label">Səbət</span>
+  </button>
 </nav>
 
 <main>
@@ -847,6 +982,7 @@
           <div id="total-value" class="calc-total-empty">— ₼</div>
         </div>
       </div>
+      <button class="cart-checkout-btn" id="add-to-cart-btn" style="display:none; margin-top:1rem;" onclick="addCurrentToCart()">Səbətə Əlavə Et</button>
     </div>
   </div>
 </div>
@@ -862,6 +998,59 @@
     <div class="design-modal-body">
       <div class="design-cat-grid" id="design-categories"></div>
       <div class="design-prod-grid" id="design-products" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cart-overlay" id="cartOverlay" onclick="handleCartOverlayClick(event)">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <button class="cart-back-btn" id="cart-back-btn" onclick="cartShowItems()">←</button>
+      <div class="cart-modal-title" id="cart-modal-title">Səbətim</div>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-modal-body">
+
+      <!-- View 1: cart items + summary -->
+      <div id="cart-view-items">
+        <div class="cart-layout">
+          <div class="cart-items-list" id="cart-items-list"></div>
+          <div class="cart-summary">
+            <div class="cart-summary-label">Ümumi Qiymət</div>
+            <div class="cart-summary-total" id="cart-summary-total">₼0.00</div>
+            <button class="cart-checkout-btn" id="cart-checkout-open-btn" onclick="cartShowCheckout()">Sifarişi Tamamla</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- View 2: checkout form -->
+      <div id="cart-view-checkout" style="display:none">
+        <div class="checkout-field">
+          <label>E-mail ünvanınız</label>
+          <input type="email" id="checkout-email" placeholder="məs: ad@nümunə.com">
+        </div>
+        <div class="checkout-field">
+          <label>Ünvan / Konum</label>
+          <textarea id="checkout-location" rows="3" placeholder="Şəhər, rayon, ünvan..."></textarea>
+        </div>
+        <div class="checkout-summary-line">
+          <span>Ümumi Qiymət</span>
+          <span id="checkout-total">₼0.00</span>
+        </div>
+        <button class="cart-checkout-btn" id="checkout-submit-btn" onclick="submitOrder()">Sifarişi Təsdiqlə</button>
+      </div>
+
+      <!-- View 3: thank you -->
+      <div id="cart-view-thankyou" style="display:none">
+        <div class="thankyou-box">
+          <div class="thankyou-icon">✓</div>
+          <div class="thankyou-title">Sifarişiniz Üçün Təşəkkür Edirik!</div>
+          <div class="thankyou-text">Kart Nömrəsi Mailinizə Göndəriləcək, Oradan Pulu Ödədikdə Sifarişiniz Bir Neçə Günə Göndəriləcəkdir!</div>
+          <button class="thankyou-close-btn" onclick="closeCart()">Bağla</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1011,6 +1200,7 @@ const DESIGN_CATS = ['kafel', 'das', 'fasad', 'taxta'];
 let designState = {};      // cellId -> { img, icon, name }
 let pendingDesignCell = null;
 let pendingDesignCat = null;
+let cartItems = []; // { key, name, price, qty, unit, img, icon, color }
 
 /* ─────────────── NAV ─────────────── */
 function showPage(id, li) {
@@ -1138,8 +1328,13 @@ function computeResult() {
 
   const rows = document.getElementById('result-rows');
   const totalEl = document.getElementById('total-value');
+  const cartBtn = document.getElementById('add-to-cart-btn');
 
   if (p.type === 'area') {
+    // Area-based materials (Kafel & Metlax, Dekorativ Daş, Fasad, Taxta) are
+    // preview/estimate only — not addable to the cart.
+    cartBtn.style.display = 'none';
+
     const L = parseFloat(document.getElementById('inp-length').value);
     const W = parseFloat(document.getElementById('inp-width').value);
 
@@ -1196,6 +1391,7 @@ function computeResult() {
     `;
     totalEl.className = 'calc-total-value';
     totalEl.textContent = `₼${formatPrice(total)}`;
+    cartBtn.style.display = 'block';
   }
 }
 
@@ -1204,6 +1400,7 @@ function resetResult() {
   const el = document.getElementById('total-value');
   el.className = 'calc-total-empty';
   el.textContent = '— ₼';
+  document.getElementById('add-to-cart-btn').style.display = 'none';
 }
 
 /* ─────────────── UTILS ─────────────── */
@@ -1358,8 +1555,215 @@ window.addEventListener('resize', () => {
   designResizeTimer = setTimeout(recalcAllDesignGrids, 150);
 });
 
+/* ─────────────── CART ─────────────── */
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  const totalQty = cartItems.reduce((sum, it) => sum + it.qty, 0);
+  if (totalQty > 0) {
+    badge.style.display = 'flex';
+    badge.textContent = totalQty > 99 ? '99+' : totalQty;
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function addCurrentToCart() {
+  const p = currentCalcProduct;
+  if (!p || p.type !== 'count') return;
+  const count = parseFloat(document.getElementById('inp-count').value);
+  if (!count || count <= 0) return;
+  const color = (p.colors && p.colors.length) ? document.getElementById('inp-color').value : null;
+  const key = p.id + (color ? ('__' + color) : '');
+
+  const existing = cartItems.find(it => it.key === key);
+  if (existing) {
+    existing.qty += count;
+  } else {
+    cartItems.push({
+      key, name: p.name, price: p.price, qty: count, unit: p.unit,
+      img: p.img || null, icon: p.icon || '🧴', color
+    });
+  }
+  updateCartBadge();
+
+  // brief confirmation on the button itself, then close the calculator
+  const btn = document.getElementById('add-to-cart-btn');
+  const original = btn.textContent;
+  btn.textContent = '✓ Səbətə əlavə olundu';
+  setTimeout(() => {
+    btn.textContent = original;
+    closeCalc();
+  }, 550);
+}
+
+function cartTotal() {
+  return cartItems.reduce((sum, it) => sum + it.qty * it.price, 0);
+}
+
+function removeCartItem(key) {
+  cartItems = cartItems.filter(it => it.key !== key);
+  updateCartBadge();
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const list = document.getElementById('cart-items-list');
+  const totalEl = document.getElementById('cart-summary-total');
+  const checkoutBtn = document.getElementById('cart-checkout-open-btn');
+
+  if (!cartItems.length) {
+    list.innerHTML = '<div class="cart-empty">Səbətiniz boşdur</div>';
+    checkoutBtn.disabled = true;
+  } else {
+    checkoutBtn.disabled = false;
+    list.innerHTML = cartItems.map(it => {
+      const media = it.img
+        ? `<img src="${it.img}" alt="${it.name}">`
+        : `<span>${it.icon}</span>`;
+      const colorLabel = it.color ? ` · ${it.color}` : '';
+      return `
+        <div class="cart-item-row">
+          <div class="cart-item-img">${media}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${it.name}</div>
+            <div class="cart-item-meta">${it.qty} ${it.unit}${colorLabel} · ₼${formatPrice(it.price)} / ${it.unit}</div>
+          </div>
+          <div class="cart-item-sub">₼${formatPrice(it.qty * it.price)}</div>
+          <button class="cart-item-remove" onclick="removeCartItem('${it.key}')" title="Sil">✕</button>
+        </div>
+      `;
+    }).join('');
+  }
+  totalEl.textContent = `₼${formatPrice(cartTotal())}`;
+}
+
+function openCart() {
+  cartShowItems();
+  renderCartItems();
+  document.getElementById('cartOverlay').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+function handleCartOverlayClick(e) {
+  if (e.target === document.getElementById('cartOverlay')) closeCart();
+}
+
+function cartShowItems() {
+  document.getElementById('cart-view-items').style.display = 'block';
+  document.getElementById('cart-view-checkout').style.display = 'none';
+  document.getElementById('cart-view-thankyou').style.display = 'none';
+  document.getElementById('cart-modal-title').textContent = 'Səbətim';
+  document.getElementById('cart-back-btn').classList.remove('show');
+  renderCartItems();
+}
+
+function cartShowCheckout() {
+  if (!cartItems.length) return;
+  document.getElementById('cart-view-items').style.display = 'none';
+  document.getElementById('cart-view-checkout').style.display = 'block';
+  document.getElementById('cart-view-thankyou').style.display = 'none';
+  document.getElementById('cart-modal-title').textContent = 'Sifarişi Tamamla';
+  document.getElementById('cart-back-btn').classList.add('show');
+  document.getElementById('checkout-total').textContent = `₼${formatPrice(cartTotal())}`;
+}
+
+function submitOrder() {
+  const email = document.getElementById('checkout-email').value.trim();
+  const location = document.getElementById('checkout-location').value.trim();
+
+  if (!email || !email.includes('@')) {
+    alert('Zəhmət olmasa düzgün e-mail daxil edin.');
+    return;
+  }
+  if (!location) {
+    alert('Zəhmət olmasa ünvanınızı daxil edin.');
+    return;
+  }
+
+  const total = cartTotal();
+  const orderLines = cartItems.map(it =>
+    `${it.name}${it.color ? ' (' + it.color + ')' : ''} — ${it.qty} ${it.unit} × ₼${formatPrice(it.price)} = ₼${formatPrice(it.qty * it.price)}`
+  ).join('\n');
+  const messageBody =
+    `Müştərinin E-maili: ${email}\n` +
+    `Konum: ${location}\n` +
+    `Sifarişin Məbləği: ₼${formatPrice(total)}\n\n` +
+    `Məhsullar:\n${orderLines}`;
+
+  const submitBtn = document.getElementById('checkout-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Göndərilir...';
+
+  // Sends the order to the store owner's inbox via EmailJS (client-side email
+  // service — required because a static GitHub Pages site has no backend/server
+  // of its own to send mail from). This runs only if EmailJS has been loaded
+  // and configured below with real service/template/public keys.
+  const canUseEmailJS = (typeof emailjs !== 'undefined' && window.EMAILJS_CONFIGURED);
+
+  const finish = () => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Sifarişi Təsdiqlə';
+    cartItems = [];
+    updateCartBadge();
+    document.getElementById('cart-view-items').style.display = 'none';
+    document.getElementById('cart-view-checkout').style.display = 'none';
+    document.getElementById('cart-view-thankyou').style.display = 'block';
+    document.getElementById('cart-modal-title').textContent = 'Sifariş qəbul olundu';
+    document.getElementById('cart-back-btn').classList.remove('show');
+  };
+
+  if (canUseEmailJS) {
+    emailjs.send(window.EMAILJS_SERVICE_ID, window.EMAILJS_TEMPLATE_ID, {
+      to_email: 'xalid.h79.off@gmail.com',
+      customer_email: email,
+      customer_location: location,
+      order_total: `₼${formatPrice(total)}`,
+      order_details: messageBody
+    }).then(finish).catch(finish);
+  } else {
+    // EmailJS not configured yet — order is still confirmed to the customer,
+    // but nothing is actually emailed until real keys are added below.
+    finish();
+  }
+}
+
 /* keyboard close */
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeDesignPicker(); } });
+</script>
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  SİFARİŞ E-MAILI GÖNDƏRMƏ QURAŞDIRMASI (EmailJS)
+  ═══════════════════════════════════════════════════════════════════
+  Bu sayt statik (GitHub Pages) olduğu üçün öz serveri yoxdur — ona görə
+  sifariş mailini avtomatik göndərmək üçün pulsuz "EmailJS" xidmətindən
+  istifadə olunur. Aktivləşdirmək üçün:
+
+  1) https://www.emailjs.com saytında pulsuz hesab açın.
+  2) "Email Services" bölməsində Gmail-inizi (xalid.h79.off@gmail.com)
+     qoşun və Service ID-ni götürün.
+  3) "Email Templates" bölməsində yeni şablon yaradın, içinə bu dəyişənləri
+     əlavə edin: {{customer_email}}, {{customer_location}}, {{order_total}},
+     {{order_details}} — və Template ID-ni götürün.
+  4) "Account" bölməsindən Public Key-i götürün.
+  5) Aşağıdakı üç sətri öz məlumatlarınızla doldurun və EMAILJS_CONFIGURED-i
+     true edin.
+
+  Bunlar doldurulmayana qədər sifariş düyməsi normal işləyir və müştəriyə
+  təşəkkür mesajı göstərilir, sadəcə mail HƏLƏ göndərilmir.
+-->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  window.EMAILJS_CONFIGURED = false; // <- true edin, açarları doldurandan sonra
+  window.EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  window.EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  window.EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  if (window.EMAILJS_CONFIGURED && typeof emailjs !== 'undefined') {
+    emailjs.init(window.EMAILJS_PUBLIC_KEY);
+  }
 </script>
 
 </body>
