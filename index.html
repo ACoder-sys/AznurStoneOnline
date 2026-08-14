@@ -768,7 +768,7 @@
       </div>
     </div>
     <div class="catalog-card" onclick="openCategory('das')">
-      <div class="catalog-img"><img src="das-cover.jpg" alt="Dekorativ Daş"></div>
+      <div class="catalog-img"><img src="das-cover.jpg" alt="Dekorativ Daş" loading="lazy" decoding="async"></div>
       <div class="catalog-body">
         <div class="catalog-name">Dekorativ Daş</div>
         <div class="catalog-desc">Dekorativ divar daşları</div>
@@ -800,7 +800,7 @@
       </div>
     </div>
     <div class="catalog-card" onclick="openCategory('qurashdir')">
-      <div class="catalog-img"><img src="sil-cover.jpg" alt="Silikon, Köpük və Pas Açıcılar"></div>
+      <div class="catalog-img"><img src="sil-cover.jpg" alt="Silikon, Köpük və Pas Açıcılar" loading="lazy" decoding="async"></div>
       <div class="catalog-body">
         <div class="catalog-name">Silikon, Köpük və Pas Açıcılar</div>
         <div class="catalog-desc">Silikon, köpük, pas açıcı</div>
@@ -816,7 +816,7 @@
       </div>
     </div>
     <div class="catalog-card" onclick="openCategory('sprey')">
-      <div class="catalog-img"><img src="sprey-cover.jpg" alt="Sprey Boya"></div>
+      <div class="catalog-img"><img src="sprey-cover.jpg" alt="Sprey Boya" loading="lazy" decoding="async"></div>
       <div class="catalog-body">
         <div class="catalog-name">Sprey Boya</div>
         <div class="catalog-desc">Sprey boyalar</div>
@@ -1237,7 +1237,7 @@ function openCategory(catKey) {
     const card = document.createElement('div');
     card.className = 'product-card';
     const mediaHtml = p.img
-      ? `<img src="${p.img}" alt="${p.name}">`
+      ? `<img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">`
       : `<span>${p.icon}</span>`;
     card.innerHTML = `
       <div class="product-img">
@@ -1282,7 +1282,7 @@ function openCalc(productId, catKey) {
   currentCalcProduct = product;
 
   document.getElementById('modal-icon').innerHTML = product.img
-    ? `<img src="${product.img}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+    ? `<img src="${product.img}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" loading="lazy" decoding="async">`
     : product.icon;
   document.getElementById('modal-title').textContent = product.name;
   document.getElementById('modal-subtitle').textContent =
@@ -1512,7 +1512,7 @@ function openDesignProducts(catKey) {
   cat.products.forEach(p => {
     const item = document.createElement('div');
     item.className = 'design-prod-item';
-    item.innerHTML = p.img ? `<img src="${p.img}" alt="${p.name}">` : `<span>${p.icon}</span>`;
+    item.innerHTML = p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">` : `<span>${p.icon}</span>`;
     item.title = p.name;
     item.addEventListener('click', () => applyDesignChoice(p));
     prodGrid.appendChild(item);
@@ -1618,7 +1618,7 @@ function renderCartItems() {
     checkoutBtn.disabled = false;
     list.innerHTML = cartItems.map(it => {
       const media = it.img
-        ? `<img src="${it.img}" alt="${it.name}">`
+        ? `<img src="${it.img}" alt="${it.name}" loading="lazy" decoding="async">`
         : `<span>${it.icon}</span>`;
       const colorLabel = it.color ? ` · ${it.color}` : '';
       return `
@@ -1757,12 +1757,11 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(
 -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  window.EMAILJS_CONFIGURED = true;
-  window.EMAILJS_SERVICE_ID = 'service_8lutj0b';
-  window.EMAILJS_TEMPLATE_ID = 'template_bog7stq';
-  window.EMAILJS_PUBLIC_KEY = '4FjYnylAfa_V1dhKv';
-
-  if (typeof emailjs !== 'undefined') {
+  window.EMAILJS_CONFIGURED = false; // <- true edin, açarları doldurandan sonra
+  window.EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  window.EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  window.EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  if (window.EMAILJS_CONFIGURED && typeof emailjs !== 'undefined') {
     emailjs.init(window.EMAILJS_PUBLIC_KEY);
   }
 </script>
