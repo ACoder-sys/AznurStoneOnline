@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AznurStone – Eviniz Üçün Ən Gözəli</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c9984a;
+      --gold-light: #e8b86d;
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --border: #e8e8e8;
+      --text: #1a1a2e;
+      --muted: #888;
+      --green: #22c55e;
+      --red: #ef4444;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main { flex: 1; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: var(--navy);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .logo-area {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 0; flex-shrink: 0; text-decoration: none;
+    }
+
+    .logo-text { font-size: 18px; font-weight: 700; color: white; letter-spacing: 0.5px; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--gold-light); font-style: italic; }
+
+    .nav-links { display: flex; align-items: stretch; list-style: none; }
+    .nav-links li a {
+      display: block; padding: 20px 18px; color: #ccc; text-decoration: none;
+      font-size: 13.5px; font-weight: 500; letter-spacing: 0.3px;
+      border-bottom: 3px solid transparent;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .nav-links li a:hover { background: rgba(255,255,255,0.07); color: white; border-bottom-color: var(--gold-light); }
+    .nav-links li.active a { color: white; border-bottom-color: var(--gold-light); }
+
+    /* ── PAGES ── */
+    .page-content { display: none; padding: 2.5rem 3rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+    .page-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .section-title {
+      font-size: 18px; font-weight: 600; color: var(--navy);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: #ddd; }
+
+    /* ── HAQQIMIZDA ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .about-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .about-card h3 { font-size: 14px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+    .about-card ul { list-style: none; }
+    .about-card ul li { padding: 6px 0; font-size: 14px; color: #333; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; }
+    .about-card ul li:last-child { border-bottom: none; }
+    .about-card ul li::before { content: '★'; color: var(--gold-light); font-size: 12px; flex-shrink: 0; }
+    .hours-table { width: 100%; font-size: 14px; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid #f0f0f0; }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 10px 0; color: #333; }
+    .hours-table td:first-child { color: #666; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: #2d8653; }
+
+    /* ── KATALOq (Category cards) ── */
+    .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+    .catalog-card {
+      background: white; border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .catalog-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(201,152,74,0.15); }
+
+    .catalog-img {
+      width: 100%; height: 140px; background: #f0ece4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; border-bottom: 1px solid #f0f0f0; overflow: hidden;
+    }
+    .catalog-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .catalog-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .catalog-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .catalog-desc { font-size: 12px; color: var(--muted); }
+    .catalog-arrow {
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      margin-top: 8px; display: flex; align-items: center; gap: 4px;
+    }
+
+    /* ── BACK BUTTON ── */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 9px 18px; font-size: 13px; font-weight: 600; color: var(--navy);
+      cursor: pointer; margin-bottom: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .back-btn:hover { border-color: var(--gold); box-shadow: 0 2px 10px rgba(0,0,0,0.08); transform: translateX(-2px); }
+
+    /* ── PRODUCT PAGE ── */
+    #products-page { display: none; padding: 2.5rem 3rem; max-width: 1100px; margin: 0 auto; width: 100%; }
+    #products-page.active { display: block; animation: fadeIn 0.3s ease; }
+
+    .products-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 2rem;
+    }
+    .products-category-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, #fef3e2, #fde7c0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; border: 1.5px solid #f5d99a;
+    }
+    .products-category-title { font-size: 22px; font-weight: 700; color: var(--navy); }
+    .products-category-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
+
+    .product-card {
+      background: white; border: 1.5px solid var(--border); border-radius: 14px;
+      overflow: hidden; cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .product-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(201,152,74,0.18); }
+    .product-card:hover .product-calc-hint { opacity: 1; }
+
+    .product-img {
+      width: 100%; aspect-ratio: 1 / 1; background: #f5f2ec;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; border-bottom: 1px solid #f0f0f0; overflow: hidden;
+      position: relative;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-calc-hint {
+      position: absolute; inset: 0; background: rgba(26,26,46,0.72);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.22s;
+      font-size: 14px; font-weight: 600; color: white; gap: 6px;
+    }
+
+    .product-body { padding: 1rem 1rem 1.2rem; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .product-name { font-size: 13.5px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+    .product-unit { font-size: 11px; color: var(--muted); }
+    .product-price {
+      font-size: 17px; font-weight: 700; color: var(--gold);
+      margin-top: auto; padding-top: 8px;
+      display: flex; align-items: baseline; gap: 4px;
+    }
+    .product-price-currency { font-size: 13px; }
+
+    .product-calc-btn {
+      margin: 0 1rem 1rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border: none; border-radius: 9px; padding: 9px 0;
+      font-size: 13px; font-weight: 600; color: white; cursor: pointer;
+      transition: opacity 0.15s, transform 0.12s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .product-calc-btn:hover { opacity: 0.88; transform: scale(0.98); }
+
+    /* ── CALCULATOR MODAL ── */
+    .calc-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,30,0.55); z-index: 300;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .calc-overlay.open { display: flex; }
+
+    .calc-modal {
+      background: white; border-radius: 20px; width: 500px; max-width: 94vw;
+      max-height: 92vh; overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(.34,1.4,.64,1);
+    }
+    @keyframes modalIn { from { opacity:0; transform: scale(0.9) translateY(20px); } to { opacity:1; transform: none; } }
+
+    .calc-modal-header {
+      background: var(--navy); color: white; padding: 1.4rem 1.6rem;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .calc-modal-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(232,184,109,0.2); border: 1.5px solid rgba(232,184,109,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+    }
+    .calc-modal-title { font-size: 16px; font-weight: 700; line-height: 1.2; }
+    .calc-modal-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .calc-close {
+      margin-left: auto; background: rgba(255,255,255,0.1); border: none;
+      color: white; width: 32px; height: 32px; border-radius: 8px;
+      font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .calc-close:hover { background: rgba(255,255,255,0.2); }
+
+    .calc-modal-body { padding: 1.6rem; }
+
+    /* Price display (readonly) */
+    .calc-price-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #faf7f2; border: 1.5px solid #f0e6d3; border-radius: 12px;
+      padding: 12px 16px; margin-bottom: 1.4rem;
+    }
+    .calc-price-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .calc-price-value { font-size: 18px; font-weight: 700; color: var(--gold); }
+    .calc-price-badge {
+      font-size: 10px; background: #fff3de; color: #b8821e; border-radius: 6px;
+      padding: 3px 8px; font-weight: 600; letter-spacing: 0.3px;
+    }
+
+    .calc-field-group { margin-bottom: 1.2rem; }
+    .calc-field-group label {
+      display: block; font-size: 12px; color: var(--muted); font-weight: 500;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .calc-inputs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .calc-input-wrap { display: flex; flex-direction: column; gap: 5px; }
+    .calc-input-wrap label { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }
+
+    .calc-input {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; font-size: 15px; font-weight: 600; color: var(--navy);
+      outline: none; font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.15s, box-shadow 0.15s; background: white;
+    }
+    .calc-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,152,74,0.12); }
+    .calc-input::placeholder { color: #ccc; font-weight: 400; }
+    /* Remove number spinners */
+    .calc-input::-webkit-inner-spin-button,
+    .calc-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .calc-input[type=number] { -moz-appearance: textfield; }
+
+    .calc-formula-hint {
+      background: #f0f7ff; border: 1px solid #cce0ff; border-radius: 8px;
+      padding: 9px 14px; margin-bottom: 1.2rem;
+      font-size: 12px; color: #3b6fcc; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Result box */
+    .calc-result-box {
+      background: linear-gradient(135deg, #1a1a2e, #0e1628);
+      border-radius: 14px; padding: 1.4rem; margin-top: 0.5rem;
+    }
+    .calc-result-rows { margin-bottom: 1.1rem; }
+    .calc-result-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .calc-result-item:last-child { border-bottom: none; }
+    .calc-result-item-label { font-size: 12.5px; color: rgba(255,255,255,0.5); }
+    .calc-result-item-val { font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.8); }
+
+    .calc-total-row {
+      border-top: 1px solid rgba(232,184,109,0.3);
+      padding-top: 1rem; margin-top: 0.6rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .calc-total-label { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 500; }
+    .calc-total-value {
+      font-size: 28px; font-weight: 700;
+      background: linear-gradient(135deg, #e8b86d, #c9984a);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'DM Serif Display', serif;
+    }
+    .calc-total-empty { font-size: 22px; font-weight: 600; color: rgba(255,255,255,0.2); font-style: italic; }
+
+    /* ── FİLİALLAR ── */
+    .filial-list { display: flex; flex-direction: column; gap: 1rem; }
+    .filial-card {
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1.25rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .filial-card:hover { border-color: #bbb; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .status-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; animation: pulse 2s infinite; }
+    .status-dot.open { background: var(--green); box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
+    .status-dot.closed { background: var(--red); box-shadow: 0 0 0 4px rgba(239,68,68,0.2); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+    .filial-img-box {
+      width: 72px; height: 58px; border-radius: 8px; background: #f0f0ec;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0; overflow: hidden; border: 1px solid var(--border);
+    }
+    .filial-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .filial-info { flex: 1; }
+    .filial-name { font-size: 16px; font-weight: 600; color: var(--navy); }
+    .filial-status { font-size: 12px; margin-top: 3px; }
+    .filial-status.open { color: #16a34a; }
+    .filial-status.closed { color: #dc2626; }
+    .filial-addr { font-size: 12px; color: #999; margin-top: 3px; }
+    .map-btn {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+      color: #3b82f6; text-decoration: none; padding: 8px 16px;
+      border: 1px solid #3b82f6; border-radius: 8px;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .map-btn:hover { background: #3b82f6; color: white; }
+
+    /* ── ƏLAQƏ ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .contact-item {
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 14px;
+    }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 10px; background: #f5f3ee;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .contact-label { font-size: 12px; color: #999; }
+    .contact-val { font-size: 14px; font-weight: 600; color: var(--navy); margin-top: 3px; }
+    .contact-item.link-item { cursor: pointer; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .contact-item.link-item:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(201,152,74,0.12); transform: translateY(-2px); }
+    .contact-msg { font-size: 12px; color: var(--gold); margin-top: 4px; font-weight: 600; }
+    .contact-icon.brand-fb { background: #1877F2; }
+    .contact-icon.brand-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .contact-icon.brand-wa { background: #25D366; }
+    .contact-icon.brand-fb svg, .contact-icon.brand-ig svg, .contact-icon.brand-wa svg { width: 22px; height: 22px; }
+
+    /* ── DİZAYN BAXIŞI ── */
+    .dizayn-hint { font-size: 13px; color: var(--muted); margin: -0.8rem 0 1.5rem; }
+
+    .design-grid {
+      display: grid; gap: 0; max-width: 640px;
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .design-grid-desktop { display: none; grid-template-columns: repeat(4, 1fr); }
+    .design-grid-mobile { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+    .design-cell {
+      aspect-ratio: 1 / 1; border-radius: 0;
+      border: 1px solid var(--border); margin: -0.5px; background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative; overflow: hidden; z-index: 0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background-size: cover; background-position: center;
+    }
+    .design-cell:hover { border-color: var(--gold); box-shadow: inset 0 0 0 1.5px var(--gold); z-index: 1; }
+    .design-cell .design-plus { font-size: 28px; font-weight: 300; color: #ccc; line-height: 1; pointer-events: none; }
+    .design-cell:hover .design-plus { color: var(--gold); }
+    .design-cell.filled { border-color: transparent; }
+    .design-cell.filled:hover { box-shadow: none; }
+    .design-cell.filled .design-plus { display: none; }
+    .design-cell.filled::after {
+      content: '✕'; position: absolute; top: 6px; right: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(26,26,46,0.72); color: white;
+      font-size: 12px; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s; z-index: 2;
+    }
+    .design-cell.filled:hover::after { opacity: 1; }
+
+    @media (min-width: 769px) {
+      .design-grid-mobile { display: none; }
+      .design-grid-desktop { display: grid; }
+    }
+
+    /* Design picker modal */
+    .design-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,30,0.55); z-index: 300;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .design-overlay.open { display: flex; }
+    .design-modal {
+      background: white; border-radius: 20px; width: 560px; max-width: 94vw;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(.34,1.4,.64,1);
+    }
+    .design-modal-header {
+      background: var(--navy); color: white; padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; gap: 10px;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .design-back-btn {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 15px;
+      cursor: pointer; display: none; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .design-back-btn.show { display: flex; }
+    .design-modal-title { font-size: 15px; font-weight: 700; flex: 1; }
+    .design-close {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .design-close:hover, .design-back-btn:hover { background: rgba(255,255,255,0.2); }
+    .design-modal-body { padding: 1.2rem; }
+
+    .design-cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .design-cat-card {
+      border: 1.5px solid var(--border); border-radius: 12px; padding: 1.1rem 0.8rem;
+      text-align: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s;
+    }
+    .design-cat-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .design-cat-icon { font-size: 30px; margin-bottom: 8px; }
+    .design-cat-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+    .design-prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .design-prod-item {
+      aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden; cursor: pointer;
+      border: 1.5px solid var(--border); background: #f5f2ec;
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .design-prod-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .design-prod-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── CART BUTTON ── */
+    .cart-btn {
+      margin-left: auto; background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 10px 8px; flex-shrink: 0;
+    }
+    .cart-btn-icon { position: relative; font-size: 19px; line-height: 1; }
+    .cart-badge {
+      position: absolute; top: -8px; right: -10px;
+      background: var(--gold); color: white; font-size: 10px; font-weight: 700;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--navy);
+    }
+    .cart-btn-label { font-size: 10.5px; color: #ccc; font-weight: 500; }
+    .cart-btn:hover .cart-btn-label { color: white; }
+
+    /* ── CART MODAL ── */
+    .cart-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,30,0.55); z-index: 400;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .cart-overlay.open { display: flex; }
+    .cart-modal {
+      background: white; border-radius: 20px; width: 760px; max-width: 95vw;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.28s cubic-bezier(.34,1.4,.64,1);
+    }
+    .cart-modal-header {
+      background: var(--navy); color: white; padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; gap: 10px;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .cart-modal-title { font-size: 16px; font-weight: 700; flex: 1; }
+    .cart-close, .cart-back-btn {
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cart-back-btn { display: none; }
+    .cart-back-btn.show { display: flex; }
+    .cart-close:hover, .cart-back-btn:hover { background: rgba(255,255,255,0.2); }
+    .cart-modal-body { padding: 1.4rem; }
+
+    .cart-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem; align-items: start; }
+    .cart-items-list { display: flex; flex-direction: column; gap: 10px; }
+    .cart-item-row {
+      display: flex; align-items: center; gap: 12px;
+      border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px;
+    }
+    .cart-item-img {
+      width: 48px; height: 48px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
+      background: #f5f2ec; display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .cart-item-meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+    .cart-item-sub { font-size: 13px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .cart-item-remove {
+      background: #fdecea; color: #d9534f; border: none; border-radius: 7px;
+      width: 26px; height: 26px; font-size: 13px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cart-item-remove:hover { background: #f8d3d0; }
+    .cart-empty { text-align: center; color: var(--muted); font-size: 13.5px; padding: 2.5rem 0; }
+
+    .cart-summary {
+      background: linear-gradient(135deg, #1a1a2e, #0e1628);
+      border-radius: 14px; padding: 1.3rem; position: sticky; top: 0;
+    }
+    .cart-summary-label { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+    .cart-summary-total {
+      font-size: 26px; font-weight: 700; color: var(--gold-light);
+      font-family: 'DM Serif Display', serif; margin-bottom: 1.1rem;
+    }
+    .cart-checkout-btn {
+      width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      border: none; border-radius: 10px; padding: 12px 0; color: white;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .cart-checkout-btn:hover { opacity: 0.9; }
+    .cart-checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .checkout-field { margin-bottom: 1rem; }
+    .checkout-field label {
+      display: block; font-size: 12px; color: var(--muted); font-weight: 500;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .checkout-field input, .checkout-field textarea {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; font-size: 14px; color: var(--navy);
+      outline: none; font-family: 'DM Sans', sans-serif; resize: vertical;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .checkout-field input:focus, .checkout-field textarea:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,152,74,0.12);
+    }
+    .checkout-summary-line {
+      display: flex; justify-content: space-between; font-size: 13.5px;
+      color: var(--navy); padding: 10px 0; border-top: 1px solid var(--border);
+      margin-bottom: 1.1rem; font-weight: 600;
+    }
+
+    .thankyou-box { text-align: center; padding: 1rem 0.5rem 0.5rem; }
+    .thankyou-icon {
+      width: 62px; height: 62px; border-radius: 50%; margin: 0 auto 1.1rem;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      display: flex; align-items: center; justify-content: center; font-size: 30px; color: white;
+    }
+    .thankyou-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .thankyou-text { font-size: 13.5px; color: #555; line-height: 1.6; margin-bottom: 1.4rem; }
+    .thankyou-close-btn {
+      background: var(--navy); color: white; border: none; border-radius: 10px;
+      padding: 11px 24px; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy); color: #888; text-align: center;
+      padding: 1.25rem; font-size: 13px;
+    }
+    .footer span { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    /* Same layout everywhere — just scale down, don't restack into different grids */
+    body { overflow-x: hidden; }
+
+    /* Fluid scaling: these apply at all sizes so the site scales smoothly
+       for every phone instead of jumping only at fixed breakpoints. */
+    .logo-text { font-size: clamp(13px, 3.6vw, 18px); }
+    .logo-sub { font-size: clamp(8px, 2vw, 10px); }
+    .section-title { font-size: clamp(15px, 3.6vw, 18px); }
+    .nav-links li a { font-size: clamp(10.5px, 2.8vw, 13.5px); }
+    .catalog-name { font-size: clamp(10.5px, 2.9vw, 14px); }
+    .catalog-desc { font-size: clamp(9px, 2.4vw, 12px); }
+    .product-name { font-size: clamp(10.5px, 2.6vw, 13.5px); }
+    .product-price { font-size: clamp(13px, 3.2vw, 17px); }
+    .product-unit { font-size: clamp(9px, 2.2vw, 11px); }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 0 1rem; gap: 0.5rem; flex-wrap: nowrap; }
+      .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-shrink: 1; min-width: 0; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links li a { padding: 16px 12px; white-space: nowrap; }
+
+      .page-content { padding: 1.5rem 1rem; }
+      #products-page { padding: 1.5rem 1rem; }
+
+      .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+      .catalog-img { height: 80px; font-size: 30px; }
+      .catalog-arrow { font-size: 10px; }
+      .catalog-body { padding: 0.6rem; }
+
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+      .product-img { font-size: 34px; }
+      .product-body { padding: 0.6rem 0.6rem 0.7rem; gap: 3px; }
+      .product-calc-btn { margin: 0 0.6rem 0.6rem; font-size: 11px; padding: 7px 0; }
+
+      .about-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .about-card { padding: 1rem; }
+
+      .contact-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .contact-item { padding: 0.9rem 1rem; }
+
+      .filial-card { padding: 1rem; gap: 0.75rem; flex-wrap: wrap; }
+      .map-btn { font-size: 12px; padding: 7px 12px; }
+
+      .calc-inputs-row { grid-template-columns: 1fr 1fr; }
+      .calc-modal { border-radius: 16px; }
+
+      .design-grid { max-width: 100%; }
+      .design-cell .design-plus { font-size: 22px; }
+      .design-modal { border-radius: 16px; }
+      .design-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .design-prod-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+      .cart-btn-label { display: none; }
+      .cart-btn { padding: 8px 6px; }
+      .cart-layout { grid-template-columns: 1fr; }
+      .cart-summary { position: static; }
+      .cart-modal { border-radius: 16px; }
+    }
+    @media (max-width: 480px) {
+      .catalog-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    /* Very small phones (SE, small Android) */
+    @media (max-width: 360px) {
+      .navbar { padding: 0 0.6rem; gap: 0.6rem; }
+      .logo-area { gap: 6px; }
+      .page-content, #products-page { padding: 1.1rem 0.7rem; }
+      .catalog-grid { gap: 0.35rem; }
+      .catalog-img { height: 64px; font-size: 24px; }
+      .catalog-body { padding: 0.45rem; }
+      .catalog-arrow { display: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+      .product-img { font-size: 28px; }
+      .product-body { padding: 0.5rem 0.5rem 0.6rem; }
+      .about-card, .contact-item, .filial-card { padding: 0.8rem; }
+      .contact-icon { width: 34px; height: 34px; font-size: 17px; }
+      .section-title { margin-bottom: 1rem; }
+      .calc-modal-header, .design-modal-header { padding: 1rem 1.1rem; }
+      .calc-modal-body, .design-modal-body { padding: 1rem; }
+      .design-cat-icon { font-size: 24px; }
+      .design-cat-card { padding: 0.8rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="logo-area" href="#">
+    <div>
+      <div class="logo-text">AznurStone</div>
+      <div class="logo-sub">Eviniz Üçün Ən Gözəli</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li class="active" onclick="showPage('haqqimizda', this)"><a href="#">Haqqımızda</a></li>
+    <li onclick="showPage('kataloq', this)"><a href="#">Kataloq</a></li>
+    <li onclick="showPage('dizayn', this)"><a href="#">Dizayn Baxışı</a></li>
+    <li onclick="showPage('filiallar', this)"><a href="#">Filiallar</a></li>
+    <li onclick="showPage('elaqe', this)"><a href="#">Əlaqə</a></li>
+  </ul>
+  <button class="cart-btn" id="cart-btn" onclick="openCart()">
+    <span class="cart-btn-icon">
+      🛒
+      <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+    </span>
+    <span class="cart-btn-label">Səbət</span>
+  </button>
+</nav>
+
+<main>
+
+<!-- HAQQIMIZDA -->
+<div id="haqqimizda" class="page-content active">
+  <div class="section-title">Haqqımızda</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Şirkət haqqında</h3>
+      <ul>
+        <li>2009-dan başlayaraq işləyirik</li>
+        <li>Müştərilər mallarımızı bəyənir</li>
+        <li>Keyfiyyətli tikinti materialları</li>
+        <li>Geniş çeşid kataloqu</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h3>İş saatları</h3>
+      <table class="hours-table">
+        <tr><td>Həftə içi</td><td>08:00 — 19:00</td></tr>
+        <tr><td>Həftə sonu</td><td>08:00 — 18:30</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="about-grid" style="margin-top:1.25rem">
+    <div style="display:flex; flex-direction:column; gap:1rem">
+      <a class="contact-item link-item" href="https://www.facebook.com/share/1Jd38f4Xf6/" target="_blank" rel="noopener">
+        <div class="contact-icon brand-fb">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.196 2.238.196v2.475h-1.26c-1.243 0-1.63.775-1.63 1.57v1.89h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Facebook</div>
+          <div class="contact-val">AznurStone</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
+      <a class="contact-item link-item" href="https://www.instagram.com/aznurstone?igsh=MXA3a3ExdzAzd3JwNA==" target="_blank" rel="noopener">
+        <div class="contact-icon brand-ig">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.256 1.216.6 1.772 1.153.51.5.905 1.104 1.153 1.772.247.637.415 1.363.465 2.428.048 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.048-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428A4.88 4.88 0 0 1 3.678 3.68 4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.012 9.283 2 12 2Zm0 1.802c-2.67 0-2.987.01-4.04.059-.976.045-1.505.207-1.858.344-.466.181-.8.398-1.15.748-.35.35-.566.684-.747 1.15-.137.353-.3.882-.344 1.857-.05 1.054-.06 1.37-.06 4.04 0 2.67.01 2.987.06 4.04.045.976.207 1.505.344 1.858.181.466.397.8.747 1.15.35.35.684.566 1.15.747.353.137.882.3 1.857.344 1.053.05 1.37.06 4.041.06 2.67 0 2.987-.01 4.04-.06.976-.045 1.506-.207 1.858-.344.466-.181.8-.397 1.15-.747.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.054.06-1.37.06-4.041 0-2.67-.012-2.987-.06-4.04-.045-.976-.207-1.505-.344-1.858a3.095 3.095 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.747c-.352-.137-.882-.3-1.857-.344-1.054-.05-1.37-.06-4.041-.06Zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27Zm0 8.468a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666Zm6.538-8.671a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-val">@aznurstone</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:1rem">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Telefon</div>
+          <div class="contact-val">+994 55 304 79 79</div>
+          <div class="contact-msg" style="visibility:hidden">💬 Mesaj yaz</div>
+        </div>
+      </div>
+      <a class="contact-item link-item" href="https://wa.me/994553047979" target="_blank" rel="noopener">
+        <div class="contact-icon brand-wa">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.14-1.35a9.96 9.96 0 0 0 4.9 1.25h.01c5.52 0 10-4.48 10-10s-4.48-10-10.01-10Zm5.86 14.3c-.25.7-1.24 1.28-2.02 1.44-.54.11-1.24.2-3.6-.77-3.02-1.25-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.86 2.08.93 2.23.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.26 1.64 2.04 1.13 1 2.08 1.32 2.38 1.47.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.57.35.08.13.08.72-.17 1.42Z" fill="#fff"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val">+994 55 304 79 79</div>
+          <div class="contact-msg">💬 Mesaj yaz</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- KATALOq (Category grid) -->
+<div id="kataloq" class="page-content">
+  <div class="section-title">Kataloq</div>
+  <div class="catalog-grid">
+    <div class="catalog-card" onclick="openCategory('kafel')">
+      <div class="catalog-img"><img src="kafel9.jpg" alt="Kafel &amp; Metlax" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Kafel &amp; Metlax</div>
+        <div class="catalog-desc">Divar və döşəmə kafelləri</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('das')">
+      <div class="catalog-img"><img src="das-cover.jpg" alt="Dekorativ Daş" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Dekorativ Daş</div>
+        <div class="catalog-desc">Dekorativ divar daşları</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('tikinti')">
+      <div class="catalog-img">🏗️</div>
+      <div class="catalog-body">
+        <div class="catalog-name">Tikinti materialları</div>
+        <div class="catalog-desc">Kərpic, blok, sement</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('fasad')">
+      <div class="catalog-img"><img src="fasaddas1.jpg" alt="Fasad Daşları" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Fasad Daşları</div>
+        <div class="catalog-desc">Fasad daşları və panelləri</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('taxta')">
+      <div class="catalog-img"><img src="taxta1.jpg" alt="Taxta məmulatları" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Taxta məmulatları</div>
+        <div class="catalog-desc">Parket, laminat, taxtapuş</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('heyet')">
+      <div class="catalog-img"><img src="heyet1.jpg" alt="Həyət Daşları" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Həyət Daşları</div>
+        <div class="catalog-desc">Həyət və bağça döşəmə daşları</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('qurashdir')">
+      <div class="catalog-img"><img src="sil-cover.jpg" alt="Silikon, Köpük və Pas Açıcılar" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Silikon, Köpük və Pas Açıcılar</div>
+        <div class="catalog-desc">Silikon, köpük, pas açıcı</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('toz')">
+      <div class="catalog-img">🧴</div>
+      <div class="catalog-body">
+        <div class="catalog-name">Toz Məhsulları</div>
+        <div class="catalog-desc">Yapışdırıcı, sement, dərz materialları</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+    <div class="catalog-card" onclick="openCategory('sprey')">
+      <div class="catalog-img"><img src="sprey-cover.jpg" alt="Sprey Boya" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Sprey Boya</div>
+        <div class="catalog-desc">Sprey boyalar</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS PAGE (dynamic) -->
+<div id="products-page">
+  <button class="back-btn" onclick="goBackToCatalog()">← Kataloqa qayıt</button>
+  <div class="products-header">
+    <div class="products-category-icon" id="cat-icon"></div>
+    <div>
+      <div class="products-category-title" id="cat-title"></div>
+      <div class="products-category-sub" id="cat-sub"></div>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</div>
+
+<!-- FİLİALLAR -->
+<!-- DİZAYN BAXIŞI -->
+<div id="dizayn" class="page-content">
+  <div class="section-title">Dizayn Baxışı</div>
+  <p class="dizayn-hint">Kvadrata basıb material seçin — divarınızın necə görünəcəyini əvvəlcədən izləyin.</p>
+  <div class="design-grid design-grid-mobile" id="design-grid-mobile"></div>
+  <div class="design-grid design-grid-desktop" id="design-grid-desktop"></div>
+</div>
+
+<div id="filiallar" class="page-content">
+  <div class="section-title">Filiallar</div>
+  <div class="filial-list">
+    <div class="filial-card">
+      <div class="status-dot open"></div>
+      <div class="filial-img-box">🏪</div>
+      <div class="filial-info">
+        <div class="filial-name">AznurStone Mərdəkan</div>
+        <div class="filial-status open">● İşləyir</div>
+        <div class="filial-addr">Bakı, Binə Atçılıq</div>
+      </div>
+      <a class="map-btn" href="https://www.google.com/maps/place/Aznur+Stone+Kafel-Merlax/@40.4746465,49.9375409,11z/data=!4m10!1m2!2m1!1saznurstone!3m6!1s0x40305fdd45b53c59:0x1230a7ba97384b97!8m2!3d40.4762334!4d50.075517!15sCgphem51cnN0b25lkgEYYnVpbGRpbmdfbWF0ZXJpYWxzX3N0b3Jl4AEA!16s%2Fg%2F11svwxt8g5?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+        📍 Xəritədə gör
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ƏLAQƏ -->
+<div id="elaqe" class="page-content">
+  <div class="section-title">Əlaqə</div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div><div class="contact-label">Telefon</div><div class="contact-val">+994 55 304 79 79</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div><div class="contact-label">Email</div><div class="contact-val">info@aznurstone.az</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div><div class="contact-label">Ünvan</div><div class="contact-val">Bakı, Binə Atçılıq</div></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div><div class="contact-label">İş vaxtı</div><div class="contact-val">08:00 – 19:00</div></div>
+    </div>
+    <a class="contact-item link-item" href="https://www.facebook.com/share/1Jd38f4Xf6/" target="_blank" rel="noopener">
+      <div class="contact-icon brand-fb">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.522 1.492-3.915 3.777-3.915 1.094 0 2.238.196 2.238.196v2.475h-1.26c-1.243 0-1.63.775-1.63 1.57v1.89h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" fill="#fff"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Facebook</div>
+        <div class="contact-val">AznurStone</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
+    <a class="contact-item link-item" href="https://www.instagram.com/aznurstone?igsh=MXA3a3ExdzAzd3JwNA==" target="_blank" rel="noopener">
+      <div class="contact-icon brand-ig">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.256 1.216.6 1.772 1.153.51.5.905 1.104 1.153 1.772.247.637.415 1.363.465 2.428.048 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.048-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428A4.88 4.88 0 0 1 3.678 3.68 4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.012 9.283 2 12 2Zm0 1.802c-2.67 0-2.987.01-4.04.059-.976.045-1.505.207-1.858.344-.466.181-.8.398-1.15.748-.35.35-.566.684-.747 1.15-.137.353-.3.882-.344 1.857-.05 1.054-.06 1.37-.06 4.04 0 2.67.01 2.987.06 4.04.045.976.207 1.505.344 1.858.181.466.397.8.747 1.15.35.35.684.566 1.15.747.353.137.882.3 1.857.344 1.053.05 1.37.06 4.041.06 2.67 0 2.987-.01 4.04-.06.976-.045 1.506-.207 1.858-.344.466-.181.8-.397 1.15-.747.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.054.06-1.37.06-4.041 0-2.67-.012-2.987-.06-4.04-.045-.976-.207-1.505-.344-1.858a3.095 3.095 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.747c-.352-.137-.882-.3-1.857-.344-1.054-.05-1.37-.06-4.041-.06Zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27Zm0 8.468a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666Zm6.538-8.671a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="#fff"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Instagram</div>
+        <div class="contact-val">@aznurstone</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
+    <a class="contact-item link-item" href="https://wa.me/994553047979" target="_blank" rel="noopener">
+      <div class="contact-icon brand-wa">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.14-1.35a9.96 9.96 0 0 0 4.9 1.25h.01c5.52 0 10-4.48 10-10s-4.48-10-10.01-10Zm5.86 14.3c-.25.7-1.24 1.28-2.02 1.44-.54.11-1.24.2-3.6-.77-3.02-1.25-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.86 2.08.93 2.23.08.15.13.33.03.53-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.26 1.64 2.04 1.13 1 2.08 1.32 2.38 1.47.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.76.83 2.06.98.3.15.5.23.57.35.08.13.08.72-.17 1.42Z" fill="#fff"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-val">+994 55 304 79 79</div>
+        <div class="contact-msg">💬 Mesaj yaz</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<!-- CALCULATOR MODAL -->
+<div class="calc-overlay" id="calcOverlay" onclick="handleOverlayClick(event)">
+  <div class="calc-modal" id="calcModal">
+    <div class="calc-modal-header">
+      <div class="calc-modal-icon" id="modal-icon"></div>
+      <div>
+        <div class="calc-modal-title" id="modal-title"></div>
+        <div class="calc-modal-subtitle" id="modal-subtitle">Hesablayıcı</div>
+      </div>
+      <button class="calc-close" onclick="closeCalc()">✕</button>
+    </div>
+    <div class="calc-modal-body">
+      <!-- Price (readonly) -->
+      <div class="calc-price-row">
+        <div>
+          <div class="calc-price-label">Vahid qiyməti</div>
+          <div class="calc-price-value" id="modal-price-display"></div>
+        </div>
+        <div class="calc-price-badge">READONLY</div>
+      </div>
+
+      <!-- Area inputs (for wall/floor products) -->
+      <div id="area-inputs">
+        <div class="calc-formula-hint">📐 Uzunluq × En × Qiymət = Cəmi ₼</div>
+        <div class="calc-inputs-row">
+          <div class="calc-input-wrap">
+            <label>Uzunluq (m)</label>
+            <input class="calc-input" type="number" id="inp-length" placeholder="məs: 5.0" min="0" step="0.1" oninput="computeResult()">
+          </div>
+          <div class="calc-input-wrap">
+            <label>En (m)</label>
+            <input class="calc-input" type="number" id="inp-width" placeholder="məs: 3.5" min="0" step="0.1" oninput="computeResult()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Count input (for other products) -->
+      <div id="count-inputs" style="display:none">
+        <div class="calc-formula-hint">🔢 Say × Qiymət = Cəmi ₼</div>
+        <div class="calc-input-wrap">
+          <label>Say (ədəd)</label>
+          <input class="calc-input" type="number" id="inp-count" placeholder="məs: 10" min="0" step="1" oninput="computeResult()">
+        </div>
+      </div>
+
+      <!-- Color select (only for products with color options) -->
+      <div id="color-inputs" style="display:none; margin-top:1rem;">
+        <div class="calc-input-wrap">
+          <label>Rəng</label>
+          <select class="calc-input" id="inp-color" onchange="computeResult()"></select>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="calc-result-box" style="margin-top:1.4rem;">
+        <div class="calc-result-rows" id="result-rows"></div>
+        <div class="calc-total-row">
+          <div class="calc-total-label">Ümumi Qiymət</div>
+          <div id="total-value" class="calc-total-empty">— ₼</div>
+        </div>
+      </div>
+      <button class="cart-checkout-btn" id="add-to-cart-btn" style="display:none; margin-top:1rem;" onclick="addCurrentToCart()">Səbətə Əlavə Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- DESIGN PICKER MODAL -->
+<div class="design-overlay" id="designOverlay" onclick="handleDesignOverlayClick(event)">
+  <div class="design-modal">
+    <div class="design-modal-header">
+      <button class="design-back-btn" id="design-back-btn" onclick="designBack()">←</button>
+      <div class="design-modal-title" id="design-modal-title">Material seçin</div>
+      <button class="design-close" onclick="closeDesignPicker()">✕</button>
+    </div>
+    <div class="design-modal-body">
+      <div class="design-cat-grid" id="design-categories"></div>
+      <div class="design-prod-grid" id="design-products" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cart-overlay" id="cartOverlay" onclick="handleCartOverlayClick(event)">
+  <div class="cart-modal">
+    <div class="cart-modal-header">
+      <button class="cart-back-btn" id="cart-back-btn" onclick="cartShowItems()">←</button>
+      <div class="cart-modal-title" id="cart-modal-title">Səbətim</div>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-modal-body">
+
+      <!-- View 1: cart items + summary -->
+      <div id="cart-view-items">
+        <div class="cart-layout">
+          <div class="cart-items-list" id="cart-items-list"></div>
+          <div class="cart-summary">
+            <div class="cart-summary-label">Ümumi Qiymət</div>
+            <div class="cart-summary-total" id="cart-summary-total">₼0.00</div>
+            <button class="cart-checkout-btn" id="cart-checkout-open-btn" onclick="cartShowCheckout()">Sifarişi Tamamla</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- View 2: checkout form -->
+      <div id="cart-view-checkout" style="display:none">
+        <div class="checkout-field">
+          <label>E-mail ünvanınız</label>
+          <input type="email" id="checkout-email" placeholder="məs: ad@nümunə.com">
+        </div>
+        <div class="checkout-field">
+          <label>Ünvan / Konum</label>
+          <textarea id="checkout-location" rows="3" placeholder="Şəhər, rayon, ünvan..."></textarea>
+        </div>
+        <div class="checkout-summary-line">
+          <span>Ümumi Qiymət</span>
+          <span id="checkout-total">₼0.00</span>
+        </div>
+        <button class="cart-checkout-btn" id="checkout-submit-btn" onclick="submitOrder()">Sifarişi Təsdiqlə</button>
+      </div>
+
+      <!-- View 3: thank you -->
+      <div id="cart-view-thankyou" style="display:none">
+        <div class="thankyou-box">
+          <div class="thankyou-icon">✓</div>
+          <div class="thankyou-title">Sifarişiniz Üçün Təşəkkür Edirik!</div>
+          <div class="thankyou-text">Kart Nömrəsi Mailinizə Göndəriləcək, Oradan Pulu Ödədikdə Sifarişiniz Bir Neçə Günə Göndəriləcəkdir!</div>
+          <button class="thankyou-close-btn" onclick="closeCart()">Bağla</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  © 2024 <span>AznurStone</span> — Eviniz Üçün Ən Gözəli
+</footer>
+
+<script>
+/* ─────────────── DATA ─────────────── */
+const CATEGORIES = {
+  kafel: {
+    icon: '🛁', name: 'Kafel & Metlax', sub: 'Divar və döşəmə kafelləri',
+    products: [
+      { id: 'k1',  img: 'kafel1.jpg',  name: 'Ağ Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k2',  img: 'kafel2.jpg',  name: 'Açıq Bej Mat Kafel', unit: 'm²', price: 9.00, type: 'area' },
+      { id: 'k3',  img: 'kafel3.jpg',  name: 'Krem Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
+      { id: 'k4',  img: 'kafel4.jpg',  name: 'Bej Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
+      { id: 'k5',  img: 'kafel5.jpg',  name: 'Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k6',  img: 'kafel6.jpg',  name: 'Tünd Boz Mat Kafel', unit: 'm²', price: 10.00, type: 'area' },
+      { id: 'k7',  img: 'kafel7.jpg',  name: 'Açıq Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k8',  img: 'kafel8.jpg',  name: 'Antrasit Mat Kafel', unit: 'm²', price: 10.50, type: 'area' },
+      { id: 'k9',  img: 'kafel9.jpg',  name: 'Boz Mərmər Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'k10', img: 'kafel10.jpg', name: 'Krem-Qəhvəyi Mərmər Kolleksiyası', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'k11', img: 'kafel11.jpg', name: 'Ağ-Boz Naxışlı Kolleksiya', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'k12', img: 'kafel12.jpg', name: 'Bej-Boz Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'k13', img: 'kafel13.jpg', name: 'Krem-Qəhvəyi Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'k14', img: 'kafel14.jpg', name: 'Ağ-Mavi Mərmər Kolleksiyası', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'k15', img: 'kafel15.jpg', name: 'Ağ-Antrasit Naxışlı Kolleksiya', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'k16', img: 'kafel16.jpg', name: 'Ağ Trellis Naxışlı Kolleksiya', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'k17', img: 'kafel17.jpg', name: 'Qəhvəyi Patchwork Parlaq Kolleksiya', unit: 'm²', price: 19.00, type: 'area' },
+      { id: 'k18', img: 'kafel18.jpg', name: 'Ağ Hexagon Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
+    ]
+  },
+  das: {
+    icon: '🪨', name: 'Dekorativ Daş', sub: 'Dekorativ divar daşları',
+    products: [
+      { id: 'd1',  img: 'das1.jpg',  name: 'Ağ Travertin Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd2',  img: 'das2.jpg',  name: 'Qəhvəyi Klinker Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd3',  img: 'das3.jpg',  name: 'Tünd Mis Effektli Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd4',  img: 'das4.jpg',  name: 'Bej-Qızılı Təbii Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd5',  img: 'das5.jpg',  name: 'Mozaik Mis Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd6',  img: 'das6.jpg',  name: 'Antrasit Qızılı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd7',  img: 'das7.jpg',  name: 'Tünd Mis Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd8',  img: 'das8.jpg',  name: 'Çəhrayı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd9',  img: 'das9.jpg',  name: 'Bej Daş Divar Panel', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd10', img: 'das10.jpg', name: 'Şokolad Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd11', img: 'das11.jpg', name: 'Qırmızı Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd12', img: 'das12.jpg', name: 'Tünd Qəhvəyi Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd13', img: 'das13.jpg', name: 'Bürünc Kub Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd14', img: 'das14.jpg', name: 'Qum Rəngli Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd15', img: 'das15.jpg', name: 'Tünd Antrasit Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd16', img: 'das16.jpg', name: 'Rəngarəng Mozaik Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd17', img: 'das17.jpg', name: 'Boz Kübik Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd18', img: 'das18.jpg', name: 'Qəhvəyi-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd19', img: 'das19.jpg', name: 'Ağ-Boz Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd21', img: 'das21.jpg', name: 'Terrakota Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd22', img: 'das22.jpg', name: 'Tünd Boz-Qızılı Panel', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd23', img: 'das23.jpg', name: 'Qırmızı-Qəhvəyi Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd24', img: 'das24.jpg', name: 'Rustik Qəhvəyi Daş Blok', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd25', img: 'das25.jpg', name: 'Rəngarəng Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd26', img: 'das26.jpg', name: 'Boz Travertin Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd27', img: 'das27.jpg', name: 'Antrasit Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd28', img: 'das28.jpg', name: 'Bürünc Blok Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd29', img: 'das29.jpg', name: 'Ağ Panel Daş', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd30', img: 'das30.jpg', name: 'Tünd Kərpic Qızılı Damarlı', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd31', img: 'das31.jpg', name: 'Gümüşü Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd32', img: 'das32.jpg', name: 'Ağ-Mavi Rəngli Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd34', img: 'das34.jpg', name: 'Qəhvəyi-Terrakota Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd35', img: 'das35.jpg', name: 'Boz Kərpic Blok', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd36', img: 'das36.jpg', name: 'Yaşıl-Boz Panel Daş', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd40', img: 'das40.jpg', name: 'Qarışıq Boyalı Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+      { id: 'd41', img: 'das41.jpg', name: 'Ağ-Boz Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd43', img: 'das43.jpg', name: 'Bej Kərpic', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'd44', img: 'das44.jpg', name: 'Yaşıl Kərpic', unit: 'm²', price: 14.00, type: 'area' },
+    ]
+  },
+  tikinti: {
+    icon: '🏗️', name: 'Tikinti materialları', sub: 'Kərpic, blok, sement',
+    products: [
+      { id: 't1', icon: '🧱', name: 'Qırmızı Kərpic', unit: 'ədəd', price: 0.38, type: 'count' },
+      { id: 't2', icon: '⬜', name: 'Gaz-beton Blok', unit: 'ədəd', price: 2.10, type: 'count' },
+      { id: 't3', icon: '🔘', name: 'Portland Sement (50 kq)', unit: 'çuval', price: 12.50, type: 'count' },
+      { id: 't4', icon: '🟫', name: 'Qum (ton)', unit: 'ton', price: 25.00, type: 'count' },
+      { id: 't5', icon: '🧱', name: 'Şlak Kərpic', unit: 'ədəd', price: 0.28, type: 'count' },
+      { id: 't6', icon: '🔳', name: 'Penobeton Blok', unit: 'ədəd', price: 3.20, type: 'count' },
+    ]
+  },
+  fasad: {
+    icon: '🪟', name: 'Fasad Daşları', sub: 'Fasad daşları və panelləri',
+    products: [
+      { id: 'fd1',  img: 'fasaddas1.jpg',  name: 'Bej Fasad Kərpici', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'fd2',  img: 'fasaddas2.jpg',  name: 'Boz-Bej Örtük Kərpic', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'fd3',  img: 'fasaddas3.jpg',  name: 'Boz Fasad Kərpici', unit: 'm²', price: 18.50, type: 'area' },
+      { id: 'fd4',  img: 'fasaddas4.jpg',  name: 'Tünd Qəhvəyi Fasad Daşı', unit: 'm²', price: 19.50, type: 'area' },
+      { id: 'fd5',  img: 'fasaddas5.jpg',  name: 'Narıncı-Terrakota Fasad Daşı', unit: 'm²', price: 18.50, type: 'area' },
+      { id: 'fd6',  img: 'fasaddas6.jpg',  name: 'Qəhvəyi-Krem Zolaqlı Daş', unit: 'm²', price: 19.00, type: 'area' },
+      { id: 'fd7',  img: 'fasaddas7.jpg',  name: 'Boz Şist Fasad Daşı', unit: 'm²', price: 20.00, type: 'area' },
+      { id: 'fd8',  img: 'fasaddas8.jpg',  name: 'Narıncı-Antrasit Fasad Daşı', unit: 'm²', price: 19.50, type: 'area' },
+      { id: 'fd9',  img: 'fasaddas9.jpg',  name: 'Bej-Qəhvəyi Fasad Daşı', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'fd10', img: 'fasaddas10.jpg', name: 'Qızılı-Krem Fasad Daşı', unit: 'm²', price: 20.50, type: 'area' },
+      { id: 'fd11', img: 'fasaddas11.jpg', name: 'Açıq Boz Fasad Daşı', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'fd12', img: 'fasaddas12.jpg', name: 'Antrasit-Boz Fasad Daşı', unit: 'm²', price: 19.00, type: 'area' },
+      { id: 'fd13', img: 'fasaddas13.jpg', name: 'Bej Rustik Fasad Daşı', unit: 'm²', price: 18.50, type: 'area' },
+      { id: 'fd14', img: 'fasaddas14.jpg', name: 'Qızılı Fasad Daşı', unit: 'm²', price: 20.00, type: 'area' },
+      { id: 'fd15', img: 'fasaddas15.jpg', name: 'Qarışıq Ton Fasad Kərpici', unit: 'm²', price: 19.50, type: 'area' },
+      { id: 'fd16', img: 'fasaddas16.jpg', name: 'Ağ Fasad Kərpici', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'fd17', img: 'fasaddas17.jpg', name: 'Qəhvəyi-Boz Mozaik Fasad Daşı', unit: 'm²', price: 21.00, type: 'area' },
+      { id: 'fd18', img: 'fasaddas18.jpg', name: 'Bej Mərmər Effektli Fasad Daşı', unit: 'm²', price: 20.50, type: 'area' },
+      { id: 'fd19', img: 'fasaddas19.jpg', name: 'Bej Təbii Daş Fasad Panel', unit: 'm²', price: 20.00, type: 'area' },
+      { id: 'fd20', img: 'fasaddas20.jpg', name: 'Boz Təbii Daş Fasad Panel', unit: 'm²', price: 21.00, type: 'area' },
+    ]
+  },
+  taxta: {
+    icon: '🪵', name: 'Taxta məmulatları', sub: 'Parket, laminat, taxtapuş',
+    products: [
+      { id: 'w1',  img: 'taxta1.jpg',  name: 'Qarışıq Ton Taxta Parket', unit: 'm²', price: 24.00, type: 'area' },
+      { id: 'w2',  img: 'taxta2.jpg',  name: 'Tünd Qəhvəyi Taxta Parket', unit: 'm²', price: 26.00, type: 'area' },
+      { id: 'w3',  img: 'taxta3.jpg',  name: 'Qızılı Palıd Taxta Parket', unit: 'm²', price: 25.00, type: 'area' },
+      { id: 'w4',  img: 'taxta4.jpg',  name: 'Qarışıq Naxışlı Taxta Parket', unit: 'm²', price: 23.50, type: 'area' },
+      { id: 'w5',  img: 'taxta5.jpg',  name: 'Qəhvəyi-Qızılı Taxta Parket', unit: 'm²', price: 24.50, type: 'area' },
+      { id: 'w6',  img: 'taxta6.jpg',  name: 'Açıq Krem Taxta Parket', unit: 'm²', price: 22.00, type: 'area' },
+      { id: 'w7',  img: 'taxta7.jpg',  name: 'Qəhvəyi Balıqqulağı Naxışlı Taxta', unit: 'm²', price: 27.00, type: 'area' },
+      { id: 'w8',  img: 'taxta8.jpg',  name: 'Qızılı Balıqqulağı Naxışlı Taxta', unit: 'm²', price: 27.50, type: 'area' },
+      { id: 'w9',  img: 'taxta9.jpg',  name: 'Tünd Qırmızı-Qəhvəyi Balıqqulağı Taxta', unit: 'm²', price: 28.00, type: 'area' },
+      { id: 'w10', img: 'taxta10.jpg', name: 'Bej Balıqqulağı Naxışlı Taxta', unit: 'm²', price: 27.00, type: 'area' },
+      { id: 'w11', img: 'taxta11.jpg', name: 'Ağ-Boz Taxta Lövhə', unit: 'm²', price: 21.00, type: 'area' },
+      { id: 'w12', img: 'taxta12.jpg', name: 'Qızılı Dar Lövhəli Taxta', unit: 'm²', price: 25.50, type: 'area' },
+      { id: 'w13', img: 'taxta13.jpg', name: 'Açıq Boz Dar Lövhəli Taxta', unit: 'm²', price: 23.00, type: 'area' },
+    ]
+  },
+  heyet: {
+    icon: '🧱', name: 'Həyət Daşları', sub: 'Həyət və bağça üçün döşəmə daşları',
+    products: [
+      { id: 'hy1',  img: 'heyet1.jpg',  name: 'Qəhvəyi Fan Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'hy2',  img: 'heyet2.jpg',  name: 'Boz Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'hy3',  img: 'heyet3.jpg',  name: 'Boz-Krem Medalyon Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'hy4',  img: 'heyet4.jpg',  name: 'Boz Kvadrat Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'hy5',  img: 'heyet5.jpg',  name: 'Bej Blok Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'hy6',  img: 'heyet6.jpg',  name: 'Qızılı Mərmər Naxışlı Həyət Daşı', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'hy7',  img: 'heyet7.jpg',  name: 'Qəhvəyi Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'hy8',  img: 'heyet8.jpg',  name: 'Boz Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'hy9',  img: 'heyet9.jpg',  name: 'Bej Mərmər Bloklu Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'hy10', img: 'heyet10.jpg', name: 'Krem Dekorativ Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'hy11', img: 'heyet11.jpg', name: 'Boz-Qızılı Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'hy12', img: 'heyet12.jpg', name: 'Qarışıq Çınqıl Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'hy13', img: 'heyet13.jpg', name: 'Boz Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'hy14', img: 'heyet14.jpg', name: 'Krem Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'hy15', img: 'heyet15.jpg', name: 'Boz Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'hy16', img: 'heyet16.jpg', name: 'Qızılı Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'hy17', img: 'heyet17.jpg', name: 'Bej Xallı Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'hy18', img: 'heyet18.jpg', name: 'Ağ Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'hy19', img: 'heyet19.jpg', name: 'Qəhvəyi Romb Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'hy20', img: 'heyet20.jpg', name: 'Bej Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'hy21', img: 'heyet21.jpg', name: 'Ağ-Boz Çınqıl Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'hy22', img: 'heyet22.jpg', name: 'Boz Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'hy23', img: 'heyet23.jpg', name: 'Açıq Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
+      { id: 'hy24', img: 'heyet24.jpg', name: 'Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
+    ]
+  },
+  qurashdir: {
+    icon: '🔩', name: 'Silikon, Köpük və Pas Açıcılar', sub: 'Silikon, köpük, pas açıcı',
+    products: [
+      { id: 's1',  img: 'sil1.jpg',  name: 'Stern Poliuretan Montaj Köpüyü (750 ml)', unit: 'ədəd', price: 9.50, type: 'count' },
+      { id: 's2',  img: 'sil2.jpg',  name: 'Fab Püskürtməli Poliuretan Köpük (500 ml)', unit: 'ədəd', price: 6.50, type: 'count' },
+      { id: 's3',  img: 'sil3.jpg',  name: 'Fab Püskürtməli Poliuretan Köpük (750 ml)', unit: 'ədəd', price: 9.50, type: 'count' },
+      { id: 's4',  img: 'sil4.jpg',  name: 'Fab Universal Ağ Silikon', unit: 'ədəd', price: 5.00, type: 'count' },
+      { id: 's5',  img: 'sil5.jpg',  name: 'Esa Şəffaf Silikon', unit: 'ədəd', price: 3.50, type: 'count' },
+      { id: 's6',  img: 'sil6.jpg',  name: 'Fab Akvarium Silikon', unit: 'ədəd', price: 7.50, type: 'count' },
+      { id: 's7',  img: 'sil7.jpg',  name: 'Fab Güzgü Silikon', unit: 'ədəd', price: 8.50, type: 'count' },
+      { id: 's8',  img: 'sil8.jpg',  name: 'Fab Şəffaf Silikon', unit: 'ədəd', price: 6.00, type: 'count' },
+      { id: 's9',  img: 'sil9.jpg',  name: 'WD-40 Pas Açan', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 's10', img: 'sil10.jpg', name: 'Apel Sarı', unit: 'ədəd', price: 4.50, type: 'count' },
+      { id: 's11', img: 'sil11.jpg', name: 'Apel Şəffaf', unit: 'ədəd', price: 5.00, type: 'count' },
+    ]
+  },
+  toz: {
+    icon: '🧴', name: 'Toz Məhsulları', sub: 'Yapışdırıcı, sement, dərz materialları',
+    products: [
+      { id: 'tz1', img: 'toz1.jpg', name: 'Tector Ceram 301 (25 kq)', unit: 'torba', price: 7.50, type: 'count' },
+      { id: 'tz2', img: 'toz2.jpg', name: 'Norm A400 (40 kq)', unit: 'torba', price: 8.00, type: 'count' },
+      { id: 'tz3', img: 'toz3.jpg', name: 'Fab Fuqaderz Silikonlu (1 kq)', unit: 'kq', price: 2.00, type: 'count',
+        colors: ['Ağ', 'Qara', 'Boz', 'Açıq Boz', 'Ağlay', 'Fildişi', 'Qəhvəyi', 'Açıq Qəhvəyi'] },
+      { id: 'tz4', img: 'toz4.jpg', name: 'Ağdəniz Astar (Sıva Alçı)', unit: 'torba', price: 6.40, type: 'count' },
+      { id: 'tz5', img: 'toz5.jpg', name: 'Ağdəniz Üzlük (Saten Alçı)', unit: 'torba', price: 6.40, type: 'count' },
+      { id: 'tz6', img: 'toz6.jpg', name: 'İzostop Su İzolyasiya (25 kq)', unit: 'torba', price: 35.00, type: 'count' },
+    ]
+  },
+  sprey: {
+    icon: '🎨', name: 'Sprey Boya', sub: 'Sprey boyalar',
+    products: [
+      { id: 'sp1', img: 'sprey1.jpg', name: 'Gri', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp2', img: 'sprey1.jpg', name: 'Mat Qara', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp3', img: 'sprey1.jpg', name: 'Parlaq Gri', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp4', img: 'sprey1.jpg', name: 'Bəyaz Mat', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp5', img: 'sprey1.jpg', name: 'Bəyaz Parlaq', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp6', img: 'sprey1.jpg', name: 'Mat Antrasit', unit: 'ədəd', price: 4.50, type: 'count' },
+      { id: 'sp7', img: 'sprey1.jpg', name: 'Açıq Qəhvəyi', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'sp8', img: 'sprey1.jpg', name: 'Qara Parlaq', unit: 'ədəd', price: 2.50, type: 'count' },
+    ]
+  }
+};
+
+/* ─────────────── STATE ─────────────── */
+let currentCalcProduct = null;
+let currentNavLi = null;
+const DESIGN_CATS = ['kafel', 'das', 'fasad', 'taxta', 'heyet'];
+let designState = {};      // cellId -> { img, icon, name }
+let pendingDesignCell = null;
+let pendingDesignCat = null;
+let cartItems = []; // { key, name, price, qty, unit, img, icon, color }
+
+/* ─────────────── NAV ─────────────── */
+function showPage(id, li) {
+  document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+  document.getElementById('products-page').classList.remove('active');
+  document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  li.classList.add('active');
+  currentNavLi = li;
+}
+
+/* ─────────────── CATEGORY → PRODUCTS ─────────────── */
+function openCategory(catKey) {
+  const cat = CATEGORIES[catKey];
+  if (!cat) return;
+
+  // hide all pages
+  document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+  document.getElementById('products-page').classList.add('active');
+
+  // header
+  document.getElementById('cat-icon').textContent = cat.icon;
+  document.getElementById('cat-title').textContent = cat.name;
+  document.getElementById('cat-sub').textContent = cat.sub;
+
+  // build product cards
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = '';
+
+  cat.products.forEach(p => {
+    const priceFormatted = formatPrice(p.price);
+    const unitLabel = p.type === 'area' ? `₼ / m²` : `₼ / ${p.unit}`;
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    const mediaHtml = p.img
+      ? `<img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">`
+      : `<span>${p.icon}</span>`;
+    card.innerHTML = `
+      <div class="product-img">
+        ${mediaHtml}
+        <div class="product-calc-hint">🧮 Hesabla</div>
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-unit">${p.unit} üzrə</div>
+        <div class="product-price">
+          <span class="product-price-currency">₼</span>${priceFormatted}
+          <span style="font-size:11px;color:#aaa;font-weight:400">/ ${p.unit}</span>
+        </div>
+      </div>
+      <button class="product-calc-btn" onclick="openCalc('${p.id}', '${catKey}')">
+        🧮 Hesabla
+      </button>
+    `;
+    card.querySelector('.product-img').addEventListener('click', () => openCalc(p.id, catKey));
+    grid.appendChild(card);
+  });
+}
+
+function goBackToCatalog() {
+  document.getElementById('products-page').classList.remove('active');
+  // re-activate kataloq
+  document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+  document.getElementById('kataloq').classList.add('active');
+  // restore active nav
+  document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
+  const kataloqLi = document.querySelector('.nav-links li[onclick*="kataloq"]') ||
+    [...document.querySelectorAll('.nav-links li')].find(l => l.getAttribute('onclick') && l.getAttribute('onclick').includes('kataloq'));
+  if (kataloqLi) kataloqLi.classList.add('active');
+}
+
+/* ─────────────── CALCULATOR ─────────────── */
+function openCalc(productId, catKey) {
+  const cat = CATEGORIES[catKey];
+  const product = cat.products.find(p => p.id === productId);
+  if (!product) return;
+
+  currentCalcProduct = product;
+
+  document.getElementById('modal-icon').innerHTML = product.img
+    ? `<img src="${product.img}" alt="${product.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" loading="lazy" decoding="async">`
+    : product.icon;
+  document.getElementById('modal-title').textContent = product.name;
+  document.getElementById('modal-subtitle').textContent =
+    product.type === 'area' ? 'Sahə Hesablayıcısı' : 'Say Hesablayıcısı';
+  document.getElementById('modal-price-display').textContent = `₼${formatPrice(product.price)} / ${product.unit}`;
+
+  // show correct input set
+  document.getElementById('area-inputs').style.display = product.type === 'area' ? 'block' : 'none';
+  document.getElementById('count-inputs').style.display = product.type === 'count' ? 'block' : 'none';
+
+  // color selector (only for products that define color options)
+  const colorWrap = document.getElementById('color-inputs');
+  const colorSelect = document.getElementById('inp-color');
+  if (product.colors && product.colors.length) {
+    colorWrap.style.display = 'block';
+    colorSelect.innerHTML = product.colors.map(c => `<option value="${c}">${c}</option>`).join('');
+    colorSelect.value = product.colors[0]; // Ağ default
+  } else {
+    colorWrap.style.display = 'none';
+    colorSelect.innerHTML = '';
+  }
+
+  // clear inputs
+  document.getElementById('inp-length').value = '';
+  document.getElementById('inp-width').value = '';
+  document.getElementById('inp-count').value = '';
+
+  resetResult();
+  document.getElementById('calcOverlay').classList.add('open');
+}
+
+function closeCalc() {
+  document.getElementById('calcOverlay').classList.remove('open');
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('calcOverlay')) closeCalc();
+}
+
+function computeResult() {
+  const p = currentCalcProduct;
+  if (!p) return;
+
+  const rows = document.getElementById('result-rows');
+  const totalEl = document.getElementById('total-value');
+  const cartBtn = document.getElementById('add-to-cart-btn');
+
+  if (p.type === 'area') {
+    // Area-based materials (Kafel & Metlax, Dekorativ Daş, Fasad, Taxta) are
+    // preview/estimate only — not addable to the cart.
+    cartBtn.style.display = 'none';
+
+    const L = parseFloat(document.getElementById('inp-length').value);
+    const W = parseFloat(document.getElementById('inp-width').value);
+
+    if (!L || !W || L <= 0 || W <= 0) { resetResult(); return; }
+
+    const area = L * W;
+    const total = area * p.price;
+
+    rows.innerHTML = `
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">Uzunluq</span>
+        <span class="calc-result-item-val">${L.toFixed(2)} m</span>
+      </div>
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">En</span>
+        <span class="calc-result-item-val">${W.toFixed(2)} m</span>
+      </div>
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">Sahə (U × E)</span>
+        <span class="calc-result-item-val">${area.toFixed(2)} m²</span>
+      </div>
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">Vahid qiymət</span>
+        <span class="calc-result-item-val">₼${formatPrice(p.price)} / m²</span>
+      </div>
+    `;
+    totalEl.className = 'calc-total-value';
+    totalEl.textContent = `₼${formatPrice(total)}`;
+
+  } else {
+    const count = parseFloat(document.getElementById('inp-count').value);
+
+    if (!count || count <= 0) { resetResult(); return; }
+
+    const total = count * p.price;
+
+    const colorRow = (p.colors && p.colors.length)
+      ? `<div class="calc-result-item">
+           <span class="calc-result-item-label">Rəng</span>
+           <span class="calc-result-item-val">${document.getElementById('inp-color').value}</span>
+         </div>`
+      : '';
+
+    rows.innerHTML = `
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">Say</span>
+        <span class="calc-result-item-val">${count} ${p.unit}</span>
+      </div>
+      ${colorRow}
+      <div class="calc-result-item">
+        <span class="calc-result-item-label">Vahid qiymət</span>
+        <span class="calc-result-item-val">₼${formatPrice(p.price)} / ${p.unit}</span>
+      </div>
+    `;
+    totalEl.className = 'calc-total-value';
+    totalEl.textContent = `₼${formatPrice(total)}`;
+    cartBtn.style.display = 'block';
+  }
+}
+
+function resetResult() {
+  document.getElementById('result-rows').innerHTML = '';
+  const el = document.getElementById('total-value');
+  el.className = 'calc-total-empty';
+  el.textContent = '— ₼';
+  document.getElementById('add-to-cart-btn').style.display = 'none';
+}
+
+/* ─────────────── UTILS ─────────────── */
+function formatPrice(n) {
+  return n.toLocaleString('az-AZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+/* ─────────────── DİZAYN BAXIŞI ─────────────── */
+function gridInfoForCell(cellId) {
+  if (cellId.indexOf('mcell-') === 0) return { prefix: 'mcell-', cols: 3, rows: 5 };
+  return { prefix: 'dcell-', cols: 4, rows: 4 };
+}
+
+/* Apply each cell's material as a natural, undistorted crop (no stretching).
+   Adjacent cells with the same material simply sit border-to-border —
+   real brick/stone walls are repeating patterns by nature, so this reads
+   as one continuous surface without warping the photo. */
+function recalcDesignRow(prefix, cols, rowIndex) {
+  for (let c = 0; c < cols; c++) {
+    const cellId = prefix + (rowIndex * cols + c + 1);
+    const data = designState[cellId];
+    const el = document.getElementById(cellId);
+    if (!el || !data || !data.img) continue;
+    el.style.backgroundImage = `url('${data.img}')`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundPosition = 'center';
+  }
+}
+
+function recalcDesignGrid(cellId) {
+  const { prefix, cols, rows } = gridInfoForCell(cellId);
+  for (let r = 0; r < rows; r++) recalcDesignRow(prefix, cols, r);
+}
+
+function recalcAllDesignGrids() {
+  recalcDesignGrid('mcell-1');
+  recalcDesignGrid('dcell-1');
+}
+
+function buildDesignGrid(containerId, count, prefix) {
+  const grid = document.getElementById(containerId);
+  if (!grid || grid.dataset.built) return;
+  grid.dataset.built = '1';
+  for (let i = 1; i <= count; i++) {
+    const cellId = prefix + i;
+    const cell = document.createElement('div');
+    cell.className = 'design-cell';
+    cell.id = cellId;
+    cell.innerHTML = '<span class="design-plus">+</span>';
+    cell.addEventListener('click', () => onDesignCellClick(cellId));
+    grid.appendChild(cell);
+  }
+}
+
+function initDesignGrids() {
+  buildDesignGrid('design-grid-mobile', 15, 'mcell-');
+  buildDesignGrid('design-grid-desktop', 16, 'dcell-');
+}
+
+function onDesignCellClick(cellId) {
+  if (designState[cellId]) {
+    // already filled -> clear it
+    delete designState[cellId];
+    const cell = document.getElementById(cellId);
+    cell.classList.remove('filled');
+    cell.style.backgroundImage = '';
+    cell.style.backgroundSize = '';
+    cell.style.backgroundPosition = '';
+    cell.innerHTML = '<span class="design-plus">+</span>';
+    recalcDesignGrid(cellId);
+    return;
+  }
+  pendingDesignCell = cellId;
+  openDesignPicker();
+}
+
+function openDesignPicker() {
+  pendingDesignCat = null;
+  document.getElementById('design-back-btn').classList.remove('show');
+  document.getElementById('design-modal-title').textContent = 'Material seçin';
+  document.getElementById('design-products').style.display = 'none';
+  const catGrid = document.getElementById('design-categories');
+  catGrid.style.display = 'grid';
+  catGrid.innerHTML = '';
+  DESIGN_CATS.forEach(key => {
+    const cat = CATEGORIES[key];
+    const card = document.createElement('div');
+    card.className = 'design-cat-card';
+    card.innerHTML = `
+      <div class="design-cat-icon">${cat.icon}</div>
+      <div class="design-cat-name">${cat.name}</div>
+    `;
+    card.addEventListener('click', () => openDesignProducts(key));
+    catGrid.appendChild(card);
+  });
+  document.getElementById('designOverlay').classList.add('open');
+}
+
+function openDesignProducts(catKey) {
+  pendingDesignCat = catKey;
+  const cat = CATEGORIES[catKey];
+  document.getElementById('design-modal-title').textContent = cat.name;
+  document.getElementById('design-back-btn').classList.add('show');
+  document.getElementById('design-categories').style.display = 'none';
+  const prodGrid = document.getElementById('design-products');
+  prodGrid.style.display = 'grid';
+  prodGrid.innerHTML = '';
+  cat.products.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'design-prod-item';
+    item.innerHTML = p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async">` : `<span>${p.icon}</span>`;
+    item.title = p.name;
+    item.addEventListener('click', () => applyDesignChoice(p));
+    prodGrid.appendChild(item);
+  });
+}
+
+function applyDesignChoice(product) {
+  if (!pendingDesignCell) return;
+  const cell = document.getElementById(pendingDesignCell);
+  designState[pendingDesignCell] = { img: product.img, icon: product.icon, name: product.name };
+  cell.classList.add('filled');
+  if (product.img) {
+    cell.innerHTML = '';
+    recalcDesignGrid(pendingDesignCell);
+  } else {
+    cell.style.backgroundImage = '';
+    cell.innerHTML = `<span style="font-size:30px">${product.icon}</span>`;
+  }
+  closeDesignPicker();
+}
+
+function designBack() {
+  openDesignPicker();
+}
+
+function closeDesignPicker() {
+  document.getElementById('designOverlay').classList.remove('open');
+  pendingDesignCell = null;
+  pendingDesignCat = null;
+}
+
+function handleDesignOverlayClick(e) {
+  if (e.target === document.getElementById('designOverlay')) closeDesignPicker();
+}
+
+initDesignGrids();
+let designResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(designResizeTimer);
+  designResizeTimer = setTimeout(recalcAllDesignGrids, 150);
+});
+
+/* ─────────────── CART ─────────────── */
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  const totalQty = cartItems.reduce((sum, it) => sum + it.qty, 0);
+  if (totalQty > 0) {
+    badge.style.display = 'flex';
+    badge.textContent = totalQty > 99 ? '99+' : totalQty;
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function addCurrentToCart() {
+  const p = currentCalcProduct;
+  if (!p || p.type !== 'count') return;
+  const count = parseFloat(document.getElementById('inp-count').value);
+  if (!count || count <= 0) return;
+  const color = (p.colors && p.colors.length) ? document.getElementById('inp-color').value : null;
+  const key = p.id + (color ? ('__' + color) : '');
+
+  const existing = cartItems.find(it => it.key === key);
+  if (existing) {
+    existing.qty += count;
+  } else {
+    cartItems.push({
+      key, name: p.name, price: p.price, qty: count, unit: p.unit,
+      img: p.img || null, icon: p.icon || '🧴', color
+    });
+  }
+  updateCartBadge();
+
+  // brief confirmation on the button itself, then close the calculator
+  const btn = document.getElementById('add-to-cart-btn');
+  const original = btn.textContent;
+  btn.textContent = '✓ Səbətə əlavə olundu';
+  setTimeout(() => {
+    btn.textContent = original;
+    closeCalc();
+  }, 550);
+}
+
+function cartTotal() {
+  return cartItems.reduce((sum, it) => sum + it.qty * it.price, 0);
+}
+
+function removeCartItem(key) {
+  cartItems = cartItems.filter(it => it.key !== key);
+  updateCartBadge();
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const list = document.getElementById('cart-items-list');
+  const totalEl = document.getElementById('cart-summary-total');
+  const checkoutBtn = document.getElementById('cart-checkout-open-btn');
+
+  if (!cartItems.length) {
+    list.innerHTML = '<div class="cart-empty">Səbətiniz boşdur</div>';
+    checkoutBtn.disabled = true;
+  } else {
+    checkoutBtn.disabled = false;
+    list.innerHTML = cartItems.map(it => {
+      const media = it.img
+        ? `<img src="${it.img}" alt="${it.name}" loading="lazy" decoding="async">`
+        : `<span>${it.icon}</span>`;
+      const colorLabel = it.color ? ` · ${it.color}` : '';
+      return `
+        <div class="cart-item-row">
+          <div class="cart-item-img">${media}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${it.name}</div>
+            <div class="cart-item-meta">${it.qty} ${it.unit}${colorLabel} · ₼${formatPrice(it.price)} / ${it.unit}</div>
+          </div>
+          <div class="cart-item-sub">₼${formatPrice(it.qty * it.price)}</div>
+          <button class="cart-item-remove" onclick="removeCartItem('${it.key}')" title="Sil">✕</button>
+        </div>
+      `;
+    }).join('');
+  }
+  totalEl.textContent = `₼${formatPrice(cartTotal())}`;
+}
+
+function openCart() {
+  cartShowItems();
+  renderCartItems();
+  document.getElementById('cartOverlay').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+function handleCartOverlayClick(e) {
+  if (e.target === document.getElementById('cartOverlay')) closeCart();
+}
+
+function cartShowItems() {
+  document.getElementById('cart-view-items').style.display = 'block';
+  document.getElementById('cart-view-checkout').style.display = 'none';
+  document.getElementById('cart-view-thankyou').style.display = 'none';
+  document.getElementById('cart-modal-title').textContent = 'Səbətim';
+  document.getElementById('cart-back-btn').classList.remove('show');
+  renderCartItems();
+}
+
+function cartShowCheckout() {
+  if (!cartItems.length) return;
+  document.getElementById('cart-view-items').style.display = 'none';
+  document.getElementById('cart-view-checkout').style.display = 'block';
+  document.getElementById('cart-view-thankyou').style.display = 'none';
+  document.getElementById('cart-modal-title').textContent = 'Sifarişi Tamamla';
+  document.getElementById('cart-back-btn').classList.add('show');
+  document.getElementById('checkout-total').textContent = `₼${formatPrice(cartTotal())}`;
+}
+
+function submitOrder() {
+  const email = document.getElementById('checkout-email').value.trim();
+  const location = document.getElementById('checkout-location').value.trim();
+
+  if (!email || !email.includes('@')) {
+    alert('Zəhmət olmasa düzgün e-mail daxil edin.');
+    return;
+  }
+  if (!location) {
+    alert('Zəhmət olmasa ünvanınızı daxil edin.');
+    return;
+  }
+
+  const total = cartTotal();
+  const orderLines = cartItems.map(it =>
+    `${it.name}${it.color ? ' (' + it.color + ')' : ''} — ${it.qty} ${it.unit} × ₼${formatPrice(it.price)} = ₼${formatPrice(it.qty * it.price)}`
+  ).join('\n');
+  const messageBody =
+    `Müştərinin E-maili: ${email}\n` +
+    `Konum: ${location}\n` +
+    `Sifarişin Məbləği: ₼${formatPrice(total)}\n\n` +
+    `Məhsullar:\n${orderLines}`;
+
+  const submitBtn = document.getElementById('checkout-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Göndərilir...';
+
+  // Sends the order to the store owner's inbox via EmailJS (client-side email
+  // service — required because a static GitHub Pages site has no backend/server
+  // of its own to send mail from). This runs only if EmailJS has been loaded
+  // and configured below with real service/template/public keys.
+  const canUseEmailJS = (typeof emailjs !== 'undefined' && window.EMAILJS_CONFIGURED);
+
+  const finish = () => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Sifarişi Təsdiqlə';
+    cartItems = [];
+    updateCartBadge();
+    document.getElementById('cart-view-items').style.display = 'none';
+    document.getElementById('cart-view-checkout').style.display = 'none';
+    document.getElementById('cart-view-thankyou').style.display = 'block';
+    document.getElementById('cart-modal-title').textContent = 'Sifariş qəbul olundu';
+    document.getElementById('cart-back-btn').classList.remove('show');
+  };
+
+  if (canUseEmailJS) {
+    emailjs.send(window.EMAILJS_SERVICE_ID, window.EMAILJS_TEMPLATE_ID, {
+      to_email: 'xalid.h79.off@gmail.com',
+      customer_email: email,
+      customer_location: location,
+      order_total: `₼${formatPrice(total)}`,
+      order_details: messageBody
+    }).then(finish).catch(finish);
+  } else {
+    // EmailJS not configured yet — order is still confirmed to the customer,
+    // but nothing is actually emailed until real keys are added below.
+    finish();
+  }
+}
+
+/* keyboard close */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeDesignPicker(); } });
+</script>
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  SİFARİŞ E-MAILI GÖNDƏRMƏ QURAŞDIRMASI (EmailJS)
+  ═══════════════════════════════════════════════════════════════════
+  Bu sayt statik (GitHub Pages) olduğu üçün öz serveri yoxdur — ona görə
+  sifariş mailini avtomatik göndərmək üçün pulsuz "EmailJS" xidmətindən
+  istifadə olunur. Aktivləşdirmək üçün:
+
+  1) https://www.emailjs.com saytında pulsuz hesab açın.
+  2) "Email Services" bölməsində Gmail-inizi (xalid.h79.off@gmail.com)
+     qoşun və Service ID-ni götürün.
+  3) "Email Templates" bölməsində yeni şablon yaradın, içinə bu dəyişənləri
+     əlavə edin: {{customer_email}}, {{customer_location}}, {{order_total}},
+     {{order_details}} — və Template ID-ni götürün.
+  4) "Account" bölməsindən Public Key-i götürün.
+  5) Aşağıdakı üç sətri öz məlumatlarınızla doldurun və EMAILJS_CONFIGURED-i
+     true edin.
+
+  Bunlar doldurulmayana qədər sifariş düyməsi normal işləyir və müştəriyə
+  təşəkkür mesajı göstərilir, sadəcə mail HƏLƏ göndərilmir.
+-->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  window.EMAILJS_CONFIGURED = true;
+  window.EMAILJS_SERVICE_ID = 'service_8lutj0b';
+  window.EMAILJS_TEMPLATE_ID = 'template_bog7stq';
+  window.EMAILJS_PUBLIC_KEY = '4FjYnylAfa_V1dhKv';
+
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(window.EMAILJS_PUBLIC_KEY);
+  }
+</script>
+
+</body>
+</html>
