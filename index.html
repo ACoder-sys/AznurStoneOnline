@@ -759,6 +759,14 @@
 <div id="kataloq" class="page-content">
   <div class="section-title">Kataloq</div>
   <div class="catalog-grid">
+    <div class="catalog-card" onclick="openCategory('kafel')">
+      <div class="catalog-img"><img src="kafel9.jpg" alt="Kafel &amp; Metlax" loading="lazy" decoding="async"></div>
+      <div class="catalog-body">
+        <div class="catalog-name">Kafel &amp; Metlax</div>
+        <div class="catalog-desc">Divar və döşəmə kafelləri</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
     <div class="catalog-card" onclick="openCategory('das')">
       <div class="catalog-img"><img src="das-cover.jpg" alt="Dekorativ Daş" loading="lazy" decoding="async"></div>
       <div class="catalog-body">
@@ -780,14 +788,6 @@
       <div class="catalog-body">
         <div class="catalog-name">Fasad Daşları</div>
         <div class="catalog-desc">Fasad, kafel, metlax və taxta məhsulları</div>
-        <div class="catalog-arrow">Məhsullara bax →</div>
-      </div>
-    </div>
-    <div class="catalog-card" onclick="openCategory('heyet')">
-      <div class="catalog-img"><img src="heyet1.jpg" alt="Həyət Daşları" loading="lazy" decoding="async"></div>
-      <div class="catalog-body">
-        <div class="catalog-name">Həyət Daşları</div>
-        <div class="catalog-desc">Həyət və bağça döşəmə daşları</div>
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
     </div>
@@ -1054,6 +1054,29 @@
 <script>
 /* ─────────────── DATA ─────────────── */
 const CATEGORIES = {
+  kafel: {
+    icon: '🛁', name: 'Kafel & Metlax', sub: 'Divar və döşəmə kafelləri',
+    products: [
+      { id: 'k1',  img: 'kafel1.jpg',  name: 'Ağ Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k2',  img: 'kafel2.jpg',  name: 'Açıq Bej Mat Kafel', unit: 'm²', price: 9.00, type: 'area' },
+      { id: 'k3',  img: 'kafel3.jpg',  name: 'Krem Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
+      { id: 'k4',  img: 'kafel4.jpg',  name: 'Bej Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
+      { id: 'k5',  img: 'kafel5.jpg',  name: 'Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k6',  img: 'kafel6.jpg',  name: 'Tünd Boz Mat Kafel', unit: 'm²', price: 10.00, type: 'area' },
+      { id: 'k7',  img: 'kafel7.jpg',  name: 'Açıq Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
+      { id: 'k8',  img: 'kafel8.jpg',  name: 'Antrasit Mat Kafel', unit: 'm²', price: 10.50, type: 'area' },
+      { id: 'k9',  img: 'kafel9.jpg',  name: 'Boz Mərmər Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'k10', img: 'kafel10.jpg', name: 'Krem-Qəhvəyi Mərmər Kolleksiyası', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'k11', img: 'kafel11.jpg', name: 'Ağ-Boz Naxışlı Kolleksiya', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'k12', img: 'kafel12.jpg', name: 'Bej-Boz Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'k13', img: 'kafel13.jpg', name: 'Krem-Qəhvəyi Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'k14', img: 'kafel14.jpg', name: 'Ağ-Mavi Mərmər Kolleksiyası', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'k15', img: 'kafel15.jpg', name: 'Ağ-Antrasit Naxışlı Kolleksiya', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'k16', img: 'kafel16.jpg', name: 'Ağ Trellis Naxışlı Kolleksiya', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'k17', img: 'kafel17.jpg', name: 'Qəhvəyi Patchwork Parlaq Kolleksiya', unit: 'm²', price: 19.00, type: 'area' },
+      { id: 'k18', img: 'kafel18.jpg', name: 'Ağ Hexagon Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
+    ]
+  },
   das: {
     icon: '🪨', name: 'Dekorativ Daş', sub: 'Dekorativ divar daşları',
     products: [
@@ -1109,7 +1132,7 @@ const CATEGORIES = {
     ]
   },
   fasad: {
-    icon: '🪟', name: 'Fasad Daşları', sub: 'Fasad, kafel, metlax və taxta məhsulları',
+    icon: '🪟', name: 'Fasad Daşları', sub: 'Fasad, taxta və həyət daşları',
     products: [
       { id: 'fd1',  img: 'fasaddas1.jpg',  name: 'Bej Fasad Kərpici', unit: 'm²', price: 17.50, type: 'area' },
       { id: 'fd2',  img: 'fasaddas2.jpg',  name: 'Boz-Bej Örtük Kərpic', unit: 'm²', price: 18.00, type: 'area' },
@@ -1131,24 +1154,6 @@ const CATEGORIES = {
       { id: 'fd18', img: 'fasaddas18.jpg', name: 'Bej Mərmər Effektli Fasad Daşı', unit: 'm²', price: 20.50, type: 'area' },
       { id: 'fd19', img: 'fasaddas19.jpg', name: 'Bej Təbii Daş Fasad Panel', unit: 'm²', price: 20.00, type: 'area' },
       { id: 'fd20', img: 'fasaddas20.jpg', name: 'Boz Təbii Daş Fasad Panel', unit: 'm²', price: 21.00, type: 'area' },
-      { id: 'fd21', img: 'kafel1.jpg',  name: 'Ağ Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
-      { id: 'fd22', img: 'kafel2.jpg',  name: 'Açıq Bej Mat Kafel', unit: 'm²', price: 9.00, type: 'area' },
-      { id: 'fd23', img: 'kafel3.jpg',  name: 'Krem Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
-      { id: 'fd24', img: 'kafel4.jpg',  name: 'Bej Mat Kafel', unit: 'm²', price: 9.50, type: 'area' },
-      { id: 'fd25', img: 'kafel5.jpg',  name: 'Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
-      { id: 'fd26', img: 'kafel6.jpg',  name: 'Tünd Boz Mat Kafel', unit: 'm²', price: 10.00, type: 'area' },
-      { id: 'fd27', img: 'kafel7.jpg',  name: 'Açıq Boz Mat Kafel', unit: 'm²', price: 8.50, type: 'area' },
-      { id: 'fd28', img: 'kafel8.jpg',  name: 'Antrasit Mat Kafel', unit: 'm²', price: 10.50, type: 'area' },
-      { id: 'fd29', img: 'kafel9.jpg',  name: 'Boz Mərmər Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'fd30', img: 'kafel10.jpg', name: 'Krem-Qəhvəyi Mərmər Kolleksiyası', unit: 'm²', price: 16.50, type: 'area' },
-      { id: 'fd31', img: 'kafel11.jpg', name: 'Ağ-Boz Naxışlı Kolleksiya', unit: 'm²', price: 17.00, type: 'area' },
-      { id: 'fd32', img: 'kafel12.jpg', name: 'Bej-Boz Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
-      { id: 'fd33', img: 'kafel13.jpg', name: 'Krem-Qəhvəyi Naxışlı Kolleksiya', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'fd34', img: 'kafel14.jpg', name: 'Ağ-Mavi Mərmər Kolleksiyası', unit: 'm²', price: 18.00, type: 'area' },
-      { id: 'fd35', img: 'kafel15.jpg', name: 'Ağ-Antrasit Naxışlı Kolleksiya', unit: 'm²', price: 17.50, type: 'area' },
-      { id: 'fd36', img: 'kafel16.jpg', name: 'Ağ Trellis Naxışlı Kolleksiya', unit: 'm²', price: 16.50, type: 'area' },
-      { id: 'fd37', img: 'kafel17.jpg', name: 'Qəhvəyi Patchwork Parlaq Kolleksiya', unit: 'm²', price: 19.00, type: 'area' },
-      { id: 'fd38', img: 'kafel18.jpg', name: 'Ağ Hexagon Naxışlı Kolleksiya', unit: 'm²', price: 15.50, type: 'area' },
       { id: 'fd39', img: 'taxta1.jpg',  name: 'Qarışıq Ton Taxta Parket', unit: 'm²', price: 24.00, type: 'area' },
       { id: 'fd40', img: 'taxta2.jpg',  name: 'Tünd Qəhvəyi Taxta Parket', unit: 'm²', price: 26.00, type: 'area' },
       { id: 'fd41', img: 'taxta3.jpg',  name: 'Qızılı Palıd Taxta Parket', unit: 'm²', price: 25.00, type: 'area' },
@@ -1162,35 +1167,30 @@ const CATEGORIES = {
       { id: 'fd49', img: 'taxta11.jpg', name: 'Ağ-Boz Taxta Lövhə', unit: 'm²', price: 21.00, type: 'area' },
       { id: 'fd50', img: 'taxta12.jpg', name: 'Qızılı Dar Lövhəli Taxta', unit: 'm²', price: 25.50, type: 'area' },
       { id: 'fd51', img: 'taxta13.jpg', name: 'Açıq Boz Dar Lövhəli Taxta', unit: 'm²', price: 23.00, type: 'area' },
-    ]
-  },
-  heyet: {
-    icon: '🧱', name: 'Həyət Daşları', sub: 'Həyət və bağça üçün döşəmə daşları',
-    products: [
-      { id: 'hy1',  img: 'heyet1.jpg',  name: 'Qəhvəyi Fan Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'hy2',  img: 'heyet2.jpg',  name: 'Boz Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
-      { id: 'hy3',  img: 'heyet3.jpg',  name: 'Boz-Krem Medalyon Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
-      { id: 'hy4',  img: 'heyet4.jpg',  name: 'Boz Kvadrat Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
-      { id: 'hy5',  img: 'heyet5.jpg',  name: 'Bej Blok Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
-      { id: 'hy6',  img: 'heyet6.jpg',  name: 'Qızılı Mərmər Naxışlı Həyət Daşı', unit: 'm²', price: 17.50, type: 'area' },
-      { id: 'hy7',  img: 'heyet7.jpg',  name: 'Qəhvəyi Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'hy8',  img: 'heyet8.jpg',  name: 'Boz Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'hy9',  img: 'heyet9.jpg',  name: 'Bej Mərmər Bloklu Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
-      { id: 'hy10', img: 'heyet10.jpg', name: 'Krem Dekorativ Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'hy11', img: 'heyet11.jpg', name: 'Boz-Qızılı Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 18.00, type: 'area' },
-      { id: 'hy12', img: 'heyet12.jpg', name: 'Qarışıq Çınqıl Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
-      { id: 'hy13', img: 'heyet13.jpg', name: 'Boz Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
-      { id: 'hy14', img: 'heyet14.jpg', name: 'Krem Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
-      { id: 'hy15', img: 'heyet15.jpg', name: 'Boz Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'hy16', img: 'heyet16.jpg', name: 'Qızılı Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
-      { id: 'hy17', img: 'heyet17.jpg', name: 'Bej Xallı Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'hy18', img: 'heyet18.jpg', name: 'Ağ Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
-      { id: 'hy19', img: 'heyet19.jpg', name: 'Qəhvəyi Romb Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
-      { id: 'hy20', img: 'heyet20.jpg', name: 'Bej Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
-      { id: 'hy21', img: 'heyet21.jpg', name: 'Ağ-Boz Çınqıl Daşı', unit: 'm²', price: 15.00, type: 'area' },
-      { id: 'hy22', img: 'heyet22.jpg', name: 'Boz Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
-      { id: 'hy23', img: 'heyet23.jpg', name: 'Açıq Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
-      { id: 'hy24', img: 'heyet24.jpg', name: 'Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
+      { id: 'fd52', img: 'heyet1.jpg',  name: 'Qəhvəyi Fan Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'fd53', img: 'heyet2.jpg',  name: 'Boz Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'fd54', img: 'heyet3.jpg',  name: 'Boz-Krem Medalyon Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'fd55', img: 'heyet4.jpg',  name: 'Boz Kvadrat Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'fd56', img: 'heyet5.jpg',  name: 'Bej Blok Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'fd57', img: 'heyet6.jpg',  name: 'Qızılı Mərmər Naxışlı Həyət Daşı', unit: 'm²', price: 17.50, type: 'area' },
+      { id: 'fd58', img: 'heyet7.jpg',  name: 'Qəhvəyi Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'fd59', img: 'heyet8.jpg',  name: 'Boz Yelpik Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'fd60', img: 'heyet9.jpg',  name: 'Bej Mərmər Bloklu Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'fd61', img: 'heyet10.jpg', name: 'Krem Dekorativ Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'fd62', img: 'heyet11.jpg', name: 'Boz-Qızılı Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 18.00, type: 'area' },
+      { id: 'fd63', img: 'heyet12.jpg', name: 'Qarışıq Çınqıl Naxışlı Həyət Daşı', unit: 'm²', price: 15.50, type: 'area' },
+      { id: 'fd64', img: 'heyet13.jpg', name: 'Boz Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'fd65', img: 'heyet14.jpg', name: 'Krem Dairəvi Naxışlı Həyət Daşı', unit: 'm²', price: 16.50, type: 'area' },
+      { id: 'fd66', img: 'heyet15.jpg', name: 'Boz Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'fd67', img: 'heyet16.jpg', name: 'Qızılı Dalğalı Naxışlı Həyət Daşı', unit: 'm²', price: 17.00, type: 'area' },
+      { id: 'fd68', img: 'heyet17.jpg', name: 'Bej Xallı Naxışlı Həyət Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'fd69', img: 'heyet18.jpg', name: 'Ağ Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'fd70', img: 'heyet19.jpg', name: 'Qəhvəyi Romb Naxışlı Həyət Daşı', unit: 'm²', price: 16.00, type: 'area' },
+      { id: 'fd71', img: 'heyet20.jpg', name: 'Bej Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'fd72', img: 'heyet21.jpg', name: 'Ağ-Boz Çınqıl Daşı', unit: 'm²', price: 15.00, type: 'area' },
+      { id: 'fd73', img: 'heyet22.jpg', name: 'Boz Çat Naxışlı Həyət Daşı', unit: 'm²', price: 14.50, type: 'area' },
+      { id: 'fd74', img: 'heyet23.jpg', name: 'Açıq Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
+      { id: 'fd75', img: 'heyet24.jpg', name: 'Boz Qranit Effektli Həyət Daşı', unit: 'm²', price: 13.50, type: 'area' },
     ]
   },
   qurashdir: {
@@ -1239,7 +1239,7 @@ const CATEGORIES = {
 /* ─────────────── STATE ─────────────── */
 let currentCalcProduct = null;
 let currentNavLi = null;
-const DESIGN_CATS = ['das', 'fasad', 'heyet'];
+const DESIGN_CATS = ['kafel', 'das', 'fasad'];
 let designState = {};      // cellId -> { img, icon, name }
 let pendingDesignCell = null;
 let pendingDesignCat = null;
