@@ -815,6 +815,14 @@
         <div class="catalog-arrow">Məhsullara bax →</div>
       </div>
     </div>
+    <div class="catalog-card" onclick="openCategory('elaletleri')">
+      <div class="catalog-img">🧰</div>
+      <div class="catalog-body">
+        <div class="catalog-name">Əl Alətləri</div>
+        <div class="catalog-desc">Rulolar, açarlar, kəlbətinlər</div>
+        <div class="catalog-arrow">Məhsullara bax →</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1232,6 +1240,40 @@ const CATEGORIES = {
       { id: 'sp6', img: 'sprey1.jpg', name: 'Mat Antrasit', unit: 'ədəd', price: 4.50, type: 'count' },
       { id: 'sp7', img: 'sprey1.jpg', name: 'Açıq Qəhvəyi', unit: 'ədəd', price: 2.50, type: 'count' },
       { id: 'sp8', img: 'sprey1.jpg', name: 'Qara Parlaq', unit: 'ədəd', price: 2.50, type: 'count' },
+    ]
+  },
+  elaletleri: {
+    icon: '🧰', name: 'Əl Alətləri', sub: 'Rulolar, açarlar, kəlbətinlər',
+    products: [
+      { id: 'ea1',  img: 'rolik-master-chem.jpg', name: 'Master Chem Boya Ruloşu', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'ea2',  img: 'rolik-defne.jpg', name: 'Defne Rulo (25sm/10mm, İç-Dış Cəphə)', unit: 'ədəd', price: 3.00, type: 'count' },
+      { id: 'ea3',  img: 'otvyorka-usa.jpg', name: 'Otvyorka / USA', unit: 'ədəd', price: 2.00, type: 'count' },
+      { id: 'ea4',  img: 'kelbetin-lit.jpg', name: 'Kəlbətin LİT/qara (160mm)', unit: 'ədəd', price: 6.00, type: 'count' },
+      { id: 'ea5',  img: 'rolik-tuklu.jpg', name: 'Rolik 20sm / tüklü', unit: 'ədəd', price: 2.70, type: 'count' },
+      { id: 'ea6',  img: 'otvertka-desti.jpg', name: 'Otvyorka Dəsti (3 ədəd, rəngli qulplu)', unit: 'dəst', price: 2.50, type: 'count' },
+      { id: 'ea7',  img: 'dekor-rulo.jpg', name: 'Dekor Rulo (25sm)', unit: 'ədəd', price: 7.50, type: 'count' },
+      { id: 'ea8',  img: 'uzun-krestovka.jpg', name: 'Uzun Krestovka Açar', unit: 'ədəd', price: 8.00, type: 'count' },
+      { id: 'ea9',  img: 'rolik-has.jpg', name: 'ROLİK barmaq / HAS qısa', unit: 'ədəd', price: 1.50, type: 'count' },
+      { id: 'ea10', img: 'rolik-axell.jpg', name: 'ROLİK barmaq / uzun (Axell)', unit: 'ədəd', price: 1.50, type: 'count' },
+      { id: 'ea11', img: 'rolik-mavi-sari.jpg', name: 'Rolik (Mavi Qulplu, Sarı Tüklü)', unit: 'ədəd', price: 3.00, type: 'count' },
+      { id: 'ea12', img: 'uzun-krestovka-ince.jpg', name: 'Uzun Krestovka Açar (İncə)', unit: 'ədəd', price: 8.00, type: 'count' },
+      { id: 'ea13', img: 'spatel-lit-25.jpg', name: 'Şpatel LİT 2.5-65mm', unit: 'ədəd', price: 1.70, type: 'count' },
+      { id: 'ea14', img: 'rolik-has-benovseyi.jpg', name: 'Rolik HAS (Bənövşəyi Qulplu)', unit: 'ədəd', price: 1.50, type: 'count' },
+      { id: 'ea15', img: 'spatel-tund-goy.jpg', name: 'Şpatel (Tünd Göy Qulplu, Enli)', unit: 'ədəd', price: 2.00, type: 'count' },
+      { id: 'ea16', img: 'rolik-turan.jpg', name: 'ROLİK Turan (20sm, Plastik)', unit: 'ədəd', price: 2.70, type: 'count' },
+      { id: 'ea17', img: 'kelbetin-world-leader.jpg', name: 'Kəlbətin Yan Kəsici (World Leader)', unit: 'ədəd', price: 4.00, type: 'count' },
+      { id: 'ea18', img: 'spatel-lit-3.jpg', name: 'Şpatel LİT 3-75mm', unit: 'ədəd', price: 1.80, type: 'count' },
+      { id: 'ea19', img: 'rolik-axell-qirmizi.jpg', name: 'Axell Roller Brush 4" (Qırmızı Qulplu)', unit: 'ədəd', price: 1.50, type: 'count' },
+      { id: 'ea20', img: 'kelbetin-mavi-aq.jpg', name: 'Kəlbətin (Mavi-Ağ Zolaqlı)', unit: 'ədəd', price: 4.00, type: 'count' },
+      { id: 'ea21', img: 'otvertka-desti-2.jpg', name: 'Otvertka Dəsti (3 ədəd: Sarı/Yaşıl/Narıncı)', unit: 'dəst', price: 2.50, type: 'count' },
+      { id: 'ea22', img: 'spatel-lit-4.jpg', name: 'Şpatel LİT 4-100mm', unit: 'ədəd', price: 2.00, type: 'count' },
+      { id: 'ea23', img: 'kelbetin-narinci-boz.jpg', name: 'Kəlbətin (Narıncı-Boz Qulplu)', unit: 'ədəd', price: 4.00, type: 'count' },
+      { id: 'ea24', img: 'bit-acar-balaca.jpg', name: 'Çoxfunksiyalı Bit Açar (Balaca)', unit: 'ədəd', price: 3.00, type: 'count' },
+      { id: 'ea25', img: 'rolik-safak.jpg', name: 'ŞAFAK Rulo (Saten)', unit: 'ədəd', price: 3.50, type: 'count' },
+      { id: 'ea26', img: 'otvyorka-petek.jpg', name: 'Otvyorka (Yastıq Tutacaqlı)', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'ea27', img: 'spatel-taxta-qulp.jpg', name: 'Şpatel (Taxta Qulplu, Enli)', unit: 'ədəd', price: 2.50, type: 'count' },
+      { id: 'ea28', img: 'otvyorka-3x75.jpg', name: 'Otvyorka 3X75', unit: 'ədəd', price: 2.00, type: 'count' },
+      { id: 'ea29', img: 'rolik-sponge.jpg', name: 'Sponge Roller (Tekstura Ruloşu)', unit: 'ədəd', price: 4.00, type: 'count' },
     ]
   }
 };
